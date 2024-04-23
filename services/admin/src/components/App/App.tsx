@@ -14,8 +14,8 @@ export const App = () => {
             {/*<br/>*/}
             {/*<Link to={shopRoutes.main}>SHOP</Link>*/}
             {/*<AppLayout />
-            */}
             <Outlet/>
+            */}
         </div>
     );
 };

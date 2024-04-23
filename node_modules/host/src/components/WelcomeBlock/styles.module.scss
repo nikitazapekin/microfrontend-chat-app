@@ -1,0 +1,267 @@
+@import "@packages/shared/theme/theme.scss";
+
+
+/*
+.welcome {
+    &__block__container {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 257px;
+        margin-bottom: 368px;
+        position: relative;
+     background-color: red;
+      
+ 
+        @include md {
+            padding: 20px;
+        } 
+    }
+    
+    &__title {
+        font-family: $font-family-open-sans;
+        font-weight: 400;
+        font-size: 96px;
+        color: $black;
+        margin-bottom: 19px;
+        margin-bottom: 19px;
+        @include md {
+            font-size: 66px;
+        }
+    }
+
+    &__subtitle {
+        font-weight: 400;
+        font-family: $font-family-open-sans;
+        font-size: 40px;
+        text-align: center;
+        max-width: 674px;
+        color: $gray;
+        margin-bottom: 74px;
+
+        @include md {
+            font-size: 20px;
+        }
+    }
+
+    &__btn {
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 130px;
+        background-color: #40A7E2;
+        @include md {
+          
+            padding: 30px 0;
+            display: flex;
+            width: 100vw;
+            }
+
+    }
+    &__button {
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 130px;
+        background-color: #40A7E2;
+
+
+        @include md {
+          
+padding: 30px 0;
+display: flex;
+width: 100vw;
+}
+
+}
+/*
+flex: 1 1 90%;
+    &__button {
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 133px;
+        cursor: pointer;
+        background-color: $blue;
+        line-height: 1.5;
+
+        
+        @include md {
+          
+          padding: 0 0;
+overflow: hidden;
+font-size:  0;
+white-space: wrap;
+
+} 
+}
+ 
+
+}
+ 
+*/
+.welcome__block {
+    width: 100%;
+    padding-top: 257px;
+    height: auto
+}
+
+.welcome {
+
+    &__inner__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    &__title {
+        font-weight: 400;
+        font-size: 96px;
+
+        font-family: $font-family-open-sans;
+        color: $black;
+        text-align: center;
+        @include md { 
+        font-size: 70px;
+        }
+    }
+
+    &__about {
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+        color: #8d8a8a;
+        font-family: $font-family-open-sans;
+        color: $gray;
+        max-width: 624px;
+        text-align: center;
+        margin: 0 auto;
+        @include md {
+        font-size: 22px;
+        }
+    }
+
+    &__btn {
+        //  display: flex;
+        flex-basis: 621px;
+        background-color: #40A7E2;
+        padding: 30px 132px;
+        color: $white;
+        font-weight: 400;
+        font-size: 40px;
+        font-family: $font-family-open-sans;
+        cursor: pointer;
+        margin-top: 74px;
+        margin-bottom: 368px;
+ 
+    }
+}
+
+
+
+.flex__container {
+    display: flex;
+    
+    overflow: hidden;
+    color: #fff;
+    
+    justify-content: center;
+ 
+}
+
+.flex__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.one {
+    background: #508694;
+    margin-right: 10px;
+    /*flex-basis: 100%; */
+    flex-basis: 400px
+}
+
+/*
+   .two {
+    background: #BB844C;  
+    margin-bottom: 10px; 
+    flex: 1 1 0;
+   }
+   .three {
+    background: #929D79; 
+    flex: 1 1 0;
+   }
+.flex_item {
+    display: flex;  
+    align-items: center; 
+    justify-content: center;  
+    color: blue
+   }
+
+   */
+/*
+
+    
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta charset="utf-8">
+  <title>flex-basis</title>
+  <style>
+   .flex-container {
+    display: flex;  
+    height: 300px;  
+    color: #fff;  
+    font-size: 2.6em;  
+    /*
+    flex-flow: column wrap;
+ 
+ 
+   }
+   .flex-item {
+    display: flex;  
+    align-items: center; 
+    justify-content: center;  
+   }
+   .one {
+    background: #508694;  
+    margin-right: 10px; 
+    flex-basis: 400px;
+   }
+   .two {
+    background: #BB844C;  
+    margin-bottom: 10px;  
+    flex: 1 1 0;
+   }
+   .three {
+    background: #929D79;  
+    flex: 1 1 0;
+   }
+  </style>
+ </head>
+ <body>
+  <div class="flex-container">
+   <div class="flex-item one">Первый</div>
+<!--   <div class="flex-item two">Второй</div>
+   <div class="flex-item three">Третий</div> -->
+  </div>
+ </body>
+</html>
+*/

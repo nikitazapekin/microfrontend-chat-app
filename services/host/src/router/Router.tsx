@@ -5,11 +5,11 @@ import shopRoutes from 'shop/Router';
 // @ts-ignore
 import adminRoutes from 'admin/Router';
 import Page from "@/pages/TestPage";
-
+import PreviewPage from "@/pages/PreviewPage";
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+     //   element: <PreviewPage />,
         children: [
             ...shopRoutes,
            ...adminRoutes,
@@ -19,7 +19,13 @@ export const router = createBrowserRouter([
 
     {
         path: "/test",
-        element: <Page />,
+        element: <App />,
+
+
+    },
+    {
+        path: "/welcome",
+        element:  <PreviewPage />,
 
 
     }
