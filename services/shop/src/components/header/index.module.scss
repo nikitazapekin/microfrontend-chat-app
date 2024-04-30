@@ -1,0 +1,101 @@
+@import "@packages/shared/theme/theme.scss";
+
+.header {
+    margin: 0 auto;
+
+    &__content {
+        width: 100%;
+        height: 112px;
+        display: grid;
+        grid-template-columns: minmax(0, 746px) minmax(0, 100%);
+    }
+}
+
+.left {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+    padding: 0 33px;
+
+    &__burger {
+        position: relative;
+        height: 40px;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        row-gap: 8px;
+
+        &__item {
+            height: 6px;
+            width: 50px;
+            background-color: $light-gray;
+
+        }
+    }
+
+    &__input {
+        max-width: 573px;
+        width: 100%;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        height: 40px;
+     //   padding-left: 40px;
+        background-color: $light-gray;
+        font-weight: 400;
+        font-size: 24px;
+        font-family: $font-family-open-sans;
+        color: #c3bfbc;
+    }
+    &__input::placeholder {
+        font-weight: 400;
+        font-size: 24px;
+     //   text-align: center;
+        color: #6e6e6e;
+        padding-left: 40px;
+    }
+}
+
+.right {
+  //  background-color: rgb(19, 230, 29);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+
+        &__title {
+            font-weight: 700;
+            font-size: 32px;
+            font-family: $font-family-open-sans;
+            color: $black;
+        }
+        &__last {
+            font-weight: 400;
+font-size: 24px;
+ 
+color: $gray;
+        }
+    }
+
+    &__dots {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        cursor: pointer;
+    }
+
+    &__dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $gray;
+    }
+}

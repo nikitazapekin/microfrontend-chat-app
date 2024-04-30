@@ -78,6 +78,7 @@ import Telephone from "../../assets/phone-call.png"
 import globalStyles from "../../styles/index.module.scss"
 import Country from "../../assets/world.png"
 import User from "../../assets/user (2).png"
+import { shopRoutes } from '@packages/shared/src/routes/shop'
 const AuthForm = () => {
     return (
         <div className={globalStyles.container}>
@@ -100,7 +101,9 @@ const AuthForm = () => {
                             Username
                         </p>
                         <div className={styles.auth__form__input__wrapper}>
-                            <input placeholder="Username" type="text" className={styles.auth__form__input} required/>
+                            <input placeholder="Username" type="text" className={styles.auth__form__input}
+                            // required
+                            />
                             <img className={styles.auth__form__icon} src={User} alt="icon" />
                         </div>
                     </div>
@@ -111,7 +114,9 @@ const AuthForm = () => {
                             Country
                         </p>
                         <div className={styles.auth__form__input__wrapper}>
-                            <input placeholder="Country" type="text" className={styles.auth__form__input} required/>
+                            <input placeholder="Country" type="text" className={styles.auth__form__input}
+                            //  required
+                            />
                             <img className={styles.auth__form__icon} src={Country} alt="icon" />
                         </div>
                     </div>
@@ -122,7 +127,9 @@ const AuthForm = () => {
                             Phone number
                         </p>
                         <div className={styles.auth__form__input__wrapper}>
-                            <input placeholder="+7" type="text" className={styles.auth__form__input} required />
+                            <input placeholder="+7" type="text" className={styles.auth__form__input}
+                            // required 
+                            />
                             <img className={styles.auth__form__icon} src={Telephone} alt="icon" />
                         </div>
                     </div>
@@ -136,13 +143,15 @@ const AuthForm = () => {
                 </div>
 
 
-<div className={styles.auth__btn__container}>
-<button  className={styles.auth__btn}>
-START MESSAGING
-</button>
-</div>
-{/*
-                <div className={`${styles.flex__container}`}>
+                <div className={styles.auth__btn__container}>
+                    <button className={styles.auth__btn}>
+                        <Link to={shopRoutes.chat}>
+                            START MESSAGING
+                        </Link>
+                    </button>
+                </div>
+                {/*
+    <div className={`${styles.flex__container}`}>
     
                     <Link to={adminRoutes.auth}>
                         <button className={`${styles.flex__item} ${styles.auth__btn}`}

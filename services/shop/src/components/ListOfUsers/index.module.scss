@@ -1,0 +1,141 @@
+@import "@packages/shared/theme/theme.scss";
+/*
+.list {
+    &__users {
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 18px;
+
+
+      height: calc(100vh - 112px);
+
+        overflow-y: scroll;
+
+    }
+.list::-webkit-scrollbar {
+    width: 1px; 
+  }
+   
+
+
+}
+*/
+
+
+.list {
+    &__users {
+        display: flex;
+        flex-direction: column;
+        row-gap: 18px;
+        height: calc(100vh - 112px);
+        overflow-y: scroll;
+ 
+    }
+}
+
+ 
+.list::-webkit-scrollbar {
+    width: 1px;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+.user {
+    cursor: pointer;
+    &__inner {
+        height: auto;
+        display: flex;
+        width: 100%;
+        column-gap: 29px;
+    }
+
+    &__image {
+        width: 96px;
+        border-radius: 50%;
+        height: 96px;
+    }
+
+    &__right {
+        width: 100%;
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &__info {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        &__title {
+            font-weight: 700;
+            font-size: 24px;
+            font-family: $font-family-open-sans;
+            color: $black;
+        }
+
+        &__time {
+            font-weight: 400;
+            font-size: 24px;
+            font-family: $font-family-open-sans;
+            color: $gray;
+        }
+
+        &__messsage {
+            font-weight: 400;
+            font-size: 24px;
+            font-family: $font-family-open-sans;
+            color: $black;
+        }
+    }
+}
+
+/*
+.user {
+    &__inner {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        height: 114px;
+        // flex-direction: column;
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        background-color: red;
+        width: 100%;
+    }
+
+    &__logo__img {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+    }
+
+    &__header__title {
+        font-weight: 700;
+        font-size: 24px;
+        font-family: $font-family-open-sans;
+        color: $black;
+    }
+
+    &__header__last__time {
+        font-weight: 400;
+        font-size: 24px;
+        font-family: $font-family-open-sans;
+        color: $black;
+    }
+}
+
+*/

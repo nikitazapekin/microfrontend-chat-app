@@ -1,0 +1,30 @@
+@import "@packages/shared/theme/theme.scss";
+
+.keypad {
+    position: absolute;
+    width: 100%;
+    height: 96px;
+    background-color: $white;
+    bottom: 0;
+    z-index: 1111111111;
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        height: 100%;
+    }
+
+    &__input__block {
+        flex-basis: 779px;
+        background-color: red;
+    }
+
+    &__input {
+        width: 100%;
+        height: 56px;
+       // background-color: $;
+    
+    }
+}

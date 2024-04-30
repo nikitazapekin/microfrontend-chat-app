@@ -162,14 +162,20 @@ export default (env: EnvVariables) => {
             react: {
                 eager: true,
                 requiredVersion: packageJson.dependencies['react'],
+          //   requiredVersion: '18.2.0',
+                 singleton: true,
             },
             'react-router-dom': {
                 eager: true,
                 requiredVersion: packageJson.dependencies['react-router-dom'],
+            //   requiredVersion: '18.2.0',
+                 singleton: true,
             },
             'react-dom': {
                 eager: true,
                 requiredVersion: packageJson.dependencies['react-dom'],
+            //  requiredVersion: '18.2.0',
+                 singleton: true,
             },
         },
     }))

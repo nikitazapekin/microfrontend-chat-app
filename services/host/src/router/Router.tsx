@@ -9,7 +9,7 @@ import PreviewPage from "@/pages/PreviewPage";
 export const router = createBrowserRouter([
     {
         path: "/",
-     //   element: <PreviewPage />,
+    
         children: [
             ...shopRoutes,
            ...adminRoutes,
