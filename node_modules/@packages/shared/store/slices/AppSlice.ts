@@ -62,6 +62,8 @@ const appSlicee = createSlice({
   reducers: {
     setLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
+
+      console.log("LOADINNNNNNNNNNNNNGGGGGGGG")
     },
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
