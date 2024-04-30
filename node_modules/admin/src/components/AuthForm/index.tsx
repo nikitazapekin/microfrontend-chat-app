@@ -73,13 +73,43 @@ import { adminRoutes } from '@packages/shared/src/routes/admin'
 import styles from "./index.module.scss"
 import { Link } from "react-router-dom";
 import Telegram from "../../assets/telegram.png"
-//import "@packages/shared/theme/global.scss"
 import Telephone from "../../assets/phone-call.png"
 import globalStyles from "../../styles/index.module.scss"
 import Country from "../../assets/world.png"
 import User from "../../assets/user (2).png"
+//import { useDispatch } from 'react-redux';
 import { shopRoutes } from '@packages/shared/src/routes/shop'
+import { TypePersonalData } from "@packages/shared/store/action-creators/AuthAcrtionCreator"
+import { useEffect, useState } from 'react';
+import { useAppDispatch } from '@/hooks/redux';
+//import {} from "../../"
+//import {} from "../../hooks/redux"
+interface Types {
+    username: string,
+    country: string,
+    tel: string
+
+}
 const AuthForm = () => {
+    const dispatch = useAppDispatch()
+    const [personalData, setPersonalData] = useState<Types>({
+        username: "",
+        country: "",
+        tel: ""
+
+    })
+    const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target
+        setPersonalData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+
+    useEffect(() => {
+        console.log("ddddddd" + JSON.stringify(personalData))
+        dispatch(TypePersonalData(personalData))
+    }, [personalData])
     return (
         <div className={globalStyles.container}>
             <form action="" className={styles.auth__form__component}>
@@ -102,7 +132,9 @@ const AuthForm = () => {
                         </p>
                         <div className={styles.auth__form__input__wrapper}>
                             <input placeholder="Username" type="text" className={styles.auth__form__input}
-                            // required
+                                onChange={handleInput}
+                                name="username"
+                                required
                             />
                             <img className={styles.auth__form__icon} src={User} alt="icon" />
                         </div>
@@ -115,7 +147,9 @@ const AuthForm = () => {
                         </p>
                         <div className={styles.auth__form__input__wrapper}>
                             <input placeholder="Country" type="text" className={styles.auth__form__input}
-                            //  required
+                                name="country"
+                                onChange={handleInput}
+                                required
                             />
                             <img className={styles.auth__form__icon} src={Country} alt="icon" />
                         </div>
@@ -128,7 +162,9 @@ const AuthForm = () => {
                         </p>
                         <div className={styles.auth__form__input__wrapper}>
                             <input placeholder="+7" type="text" className={styles.auth__form__input}
-                            // required 
+                                name="tel"
+                                onChange={handleInput}
+                                required
                             />
                             <img className={styles.auth__form__icon} src={Telephone} alt="icon" />
                         </div>
@@ -150,21 +186,57 @@ const AuthForm = () => {
                         </Link>
                     </button>
                 </div>
-                {/*
-    <div className={`${styles.flex__container}`}>
-    
-                    <Link to={adminRoutes.auth}>
-                        <button className={`${styles.flex__item} ${styles.auth__btn}`}
-                        >
-                            START MESSAGING
-                        </button>
-                    </Link>
 
-   </div>
-*/}
             </form>
         </div>
     );
 }
 
 export default AuthForm;
+
+
+
+/*
+
+
+import {createRoot} from "react-dom/client";
+import { RouterProvider} from "react-router-dom";
+import {router} from "@/router/Router";
+import { PersistGate } from 'redux-persist/integration/react';
+import {Provider, useDispatch} from "react-redux"; 
+import { persistor, store } from "@packages/shared/store/store"
+ 
+import { setLoading } from "@packages/shared/store/slices/AppSlice";
+const root = document.getElementById('root')
+
+if(!root) {
+    throw new Error('root not found')
+}
+
+const container = createRoot(root)
+
+const SomeComponent = () => {
+  const dispatch = useDispatch();  
+
+  
+  dispatch(setLoading(true));  
+  
+  return (
+    <div>
+     
+    </div>
+  );
+}
+
+container.render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <RouterProvider router={router} />
+      <SomeComponent /> 
+    </PersistGate>
+  </Provider>
+)
+
+
+
+*/
