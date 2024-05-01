@@ -1,73 +1,4 @@
-/*import styles from "./index.module.scss"
-import Telegram from "../../assets/telegram.png"
-const AuthForm = () => {
-    return (
-        <form className={styles.auth__form}>
-            <div className={styles.auth__form__logo}>
-                <img src={Telegram} alt="logo" className={styles.auth__form__logo__image} />
-            </div>
-            <h1 className={styles.auth__form__title}>
-                Sign in to Telegram
-            </h1>
-            <h2 className={styles.auth__form__subtitle}>
-                Please confirm your country and
-                enter your phone number
-            </h2>
-            <div className={styles.auth__form__forms}>
-
-
-                <div className={styles.auth__form__item}>
-                    <p className={styles.auth__form__item__title}>
-                        Username
-                    </p>
-                    <input type="text" className={styles.auth__form__item__select} placeholder="Username" required />
-
-                </div>
-
-
-
-
-                <div className={styles.auth__form__item}>
-                    <p className={styles.auth__form__item__title}>
-                        Country
-                    </p>
-                    <select className={styles.auth__form__item__select} value="">
-                        <option value="Russia">Russia</option>
-                        <option value="England">England</option>
-                    </select>
-                </div>
-
-
-                <div className={styles.auth__form__item}>
-                    <p className={styles.auth__form__item__title}>
-                        Phone number
-                    </p>
-                    <input type="text" className={styles.auth__form__item__select} placeholder="+7" required />
-
-                </div>
-
-
-
-            </div>
-
-
-            <div className={styles.auth__form__check}>
-                <input type="checkbox" className={styles.auth__form__check__input} />
-                <p className={styles.auth__form__check__title}>
-                    Keep me signed in
-                </p>
-            </div>
-
-            <button className={styles.auth__form__submit}>
-                SIGN IN
-            </button>
-        </form>
-    );
-}
-
-export default AuthForm;
-*/
-
+ 
 
 import { adminRoutes } from '@packages/shared/src/routes/admin'
 import styles from "./index.module.scss"
@@ -77,13 +8,13 @@ import Telephone from "../../assets/phone-call.png"
 import globalStyles from "../../styles/index.module.scss"
 import Country from "../../assets/world.png"
 import User from "../../assets/user (2).png"
-//import { useDispatch } from 'react-redux';
 import { shopRoutes } from '@packages/shared/src/routes/shop'
 import { TypePersonalData } from "@packages/shared/store/action-creators/AuthAcrtionCreator"
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from '@/hooks/redux';
-//import {} from "../../"
-//import {} from "../../hooks/redux"
+import { useAppDispatch} from '@/hooks/redux';
+import  {personalApi} from "@packages/shared/API/auth"
+import { useSelector } from 'react-redux';
+import {authSelector} from "@packages/shared/store/selectors/auth.selector"
 interface Types {
     username: string,
     country: string,
@@ -92,6 +23,7 @@ interface Types {
 }
 const AuthForm = () => {
     const dispatch = useAppDispatch()
+    const data  = useSelector(authSelector)
     const [personalData, setPersonalData] = useState<Types>({
         username: "",
         country: "",
@@ -107,9 +39,16 @@ const AuthForm = () => {
     }
 
     useEffect(() => {
-        console.log("ddddddd" + JSON.stringify(personalData))
         dispatch(TypePersonalData(personalData))
     }, [personalData])
+
+    const handleAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault()
+        console.log("auh" )
+   
+        personalApi.AuthAction(data)
+
+    }
     return (
         <div className={globalStyles.container}>
             <form action="" className={styles.auth__form__component}>
@@ -119,6 +58,7 @@ const AuthForm = () => {
 
                 <h1 className={styles.auth__title}>
                     Sign in to Telegram
+                    
                 </h1>
                 <h2 className={styles.auth__about}>
                     Please confirm your country and
@@ -139,8 +79,6 @@ const AuthForm = () => {
                             <img className={styles.auth__form__icon} src={User} alt="icon" />
                         </div>
                     </div>
-
-
                     <div className={styles.auth__form}>
                         <p className={styles.auth__form__title}>
                             Country
@@ -154,8 +92,6 @@ const AuthForm = () => {
                             <img className={styles.auth__form__icon} src={Country} alt="icon" />
                         </div>
                     </div>
-
-
                     <div className={styles.auth__form}>
                         <p className={styles.auth__form__title}>
                             Phone number
@@ -180,10 +116,14 @@ const AuthForm = () => {
 
 
                 <div className={styles.auth__btn__container}>
-                    <button className={styles.auth__btn}>
+                    <button className={styles.auth__btn}
+                    onClick={handleAuth}
+                    >
+                    {/*
                         <Link to={shopRoutes.chat}>
-                            START MESSAGING
                         </Link>
+    */}
+                            START MESSAGING
                     </button>
                 </div>
 
