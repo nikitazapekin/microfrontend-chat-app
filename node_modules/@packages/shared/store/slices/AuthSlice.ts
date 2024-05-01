@@ -4,14 +4,16 @@ export interface AuthState {
 
   username: string,
   country: string,
-  tel: string
+  tel: string,
+ // password: string
 }
 
 const initialState: AuthState = {
 
   username: "",
   country: "",
-  tel: ""
+  tel: "",
+ // password: ""
 };
 
 const AuthSlice = createSlice({
@@ -28,8 +30,8 @@ const AuthSlice = createSlice({
       state.username = action.payload.username;
       state.country = action.payload.country;
       state.tel = action.payload.tel;
-
-      console.log("STATEE" +JSON.stringify(state))
+      //state.password = action.payload.password
+      console.log("STATEE" + JSON.stringify(state))
     }
   },
 });

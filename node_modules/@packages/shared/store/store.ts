@@ -8,12 +8,12 @@ import { calculatorSlice } from "./slices/CalculatorSlice";
 //import AppSlice from "./slices/AppSlice";
 import appSlicee from "./slices/AppSlice"
 import AuthSlice from "./slices/AuthSlice";
+import SidebarSlice from "./slices/SidebarSlice";
 const rootReducer = combineReducers({
-     //themeReducer,
-   //  calculator: calculatorSlice.reducer, 
- //  app: AppSlice
+
  appSlicee: appSlicee,
- AuthSlice: AuthSlice
+ AuthSlice: AuthSlice,
+ SidebarSlice: SidebarSlice
 
 })
 const persistConfig = getPersistConfig({

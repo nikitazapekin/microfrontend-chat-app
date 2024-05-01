@@ -1,8 +1,8 @@
- 
+
 
 import { adminRoutes } from '@packages/shared/src/routes/admin'
 import styles from "./index.module.scss"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Telegram from "../../assets/telegram.png"
 import Telephone from "../../assets/phone-call.png"
 import globalStyles from "../../styles/index.module.scss"
@@ -11,24 +11,25 @@ import User from "../../assets/user (2).png"
 import { shopRoutes } from '@packages/shared/src/routes/shop'
 import { TypePersonalData } from "@packages/shared/store/action-creators/AuthAcrtionCreator"
 import { useEffect, useState } from 'react';
-import { useAppDispatch} from '@/hooks/redux';
-import  {personalApi} from "@packages/shared/API/auth"
+import { useAppDispatch } from '@/hooks/redux';
+import AuthService, { personalApi } from "@packages/shared/API/auth"
 import { useSelector } from 'react-redux';
-import {authSelector} from "@packages/shared/store/selectors/auth.selector"
+import { authSelector } from "@packages/shared/store/selectors/auth.selector"
 interface Types {
     username: string,
     country: string,
-    tel: string
-
+    tel: string,
+    password: string
 }
 const AuthForm = () => {
     const dispatch = useAppDispatch()
-    const data  = useSelector(authSelector)
+    const navigate = useNavigate()
+    const data = useSelector(authSelector)
     const [personalData, setPersonalData] = useState<Types>({
         username: "",
         country: "",
-        tel: ""
-
+        tel: "",
+        password: ""
     })
     const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
@@ -37,17 +38,22 @@ const AuthForm = () => {
             [name]: value
         }));
     }
-
     useEffect(() => {
         dispatch(TypePersonalData(personalData))
     }, [personalData])
 
     const handleAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
-        console.log("auh" )
-   
-        personalApi.AuthAction(data)
+        AuthService.login().then(res => {
+            console.log(JSON.stringify(res.data.access_token))
+            localStorage.setItem("token", JSON.stringify({ "token": res.data.access_token }))
 
+            console.log(res.status)
+            if (res.status == 200) {
+                navigate(shopRoutes.chat)
+            }
+        }
+        )
     }
     return (
         <div className={globalStyles.container}>
@@ -58,7 +64,7 @@ const AuthForm = () => {
 
                 <h1 className={styles.auth__title}>
                     Sign in to Telegram
-                    
+
                 </h1>
                 <h2 className={styles.auth__about}>
                     Please confirm your country and
@@ -105,25 +111,28 @@ const AuthForm = () => {
                             <img className={styles.auth__form__icon} src={Telephone} alt="icon" />
                         </div>
                     </div>
+
+
+
+
+       
+
                 </div>
                 <div className={styles.auth__check__block}>
                     <input type="checkbox" className={styles.auth__check__block__input} />
                     <p className={styles.auth__check__block__text}>
                         Keep me signed in
                     </p>
-
                 </div>
-
-
                 <div className={styles.auth__btn__container}>
                     <button className={styles.auth__btn}
-                    onClick={handleAuth}
+                        onClick={handleAuth}
                     >
-                    {/*
+                        {/*
                         <Link to={shopRoutes.chat}>
                         </Link>
     */}
-                            START MESSAGING
+                        START MESSAGING
                     </button>
                 </div>
 
