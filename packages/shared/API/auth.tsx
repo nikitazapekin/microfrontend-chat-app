@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 /*
 const apiHost = process.env.REACT_APP_API_BASE_URL;
 const serverApiInstance: AxiosInstance = axios.create({
@@ -9,39 +9,56 @@ const serverApiInstance: AxiosInstance = axios.create({
 */
 
 interface PersonalData {
-    username: string, 
+    username: string,
     tel: string,
     country: string
 }
 
 export interface AuthResponse {
-    
+
     access_token: string;
-    
-        username: string;
-        /*
-        data :{
-   }
-   */
-}
-/*
-interface AuthObj {
-    access_token: string;
-      
+
     username: string;
+    /*
+    data :{
 }
-export interface AuthResponse {
-    data :AuthObj
-} */
+*/
+}
+
+interface RefreshProps {
+    refresh_token: string
+}
+
+interface AccessProps {
+    access_token: string
+}
+
+interface PersonalData {
+    /* username: string,
+     tel: string, 
+     country: string,
+     chats: Object,
+     */
+
+
+    access_token: string,
+    username: string,
+    country: string,
+    tel: string,
+    chats: Object,
+    avatar: string,
+    description: string,
+
+}
 const API_URL = `http://localhost:5000/${`chat`}/`
 const serverApiInstance: AxiosInstance = axios.create({
     baseURL: API_URL,
     withCredentials: true,
-    
+
 });
- 
+
 serverApiInstance.interceptors.request.use((config) => {
-    console.log("INTERCEPT" +localStorage.getItem('token'))
+    console.log("INTERCEPT" + localStorage.getItem('token'))
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config;
 })
@@ -49,13 +66,19 @@ serverApiInstance.interceptors.request.use((config) => {
 serverApiInstance.interceptors.response.use((config) => {
     return config;
 }, async (error) => {
+    console.log("INTERCEEEEEEEEEEEEEEEEEEEEEEEEEEEEE{TOR")
+    const user = localStorage.getItem("username")
+    console.log("USER"+user)
     const originalRequest = error.config;
-    console.log("ERRR" +JSON.stringify(error))
+    console.log("ERRR" + JSON.stringify(error))
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
-            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
+            const token = localStorage.getItem("token")
+            console.log("TOK" + token)
+            const response = await axios.get<AuthResponse>(`${API_URL}token?token=${token}&user=${user}`, { withCredentials: true })
             localStorage.setItem('token', response.data.access_token);
+            console.log("new access token" +JSON.stringify(response.data.access_token))
             return serverApiInstance.request(originalRequest);
         } catch (e) {
             console.log('НЕ АВТОРИЗОВАН')
@@ -67,109 +90,138 @@ serverApiInstance.interceptors.response.use((config) => {
 */
 
 export default class AuthService {
-   // static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-
-   static async login(): Promise<AxiosResponse<AuthResponse>> {
-        let username = "hdj"
-        let country = "jj" 
-        let tel  = "jjdj"
-        return serverApiInstance.post<AuthResponse>('/sign-in', {username, tel, country})
-       // return serverApiInstance.post<AuthResponse>('/login', {email, password})
+    static async login(username: string, country: string, tel: string): Promise<AxiosResponse<AuthResponse>> {
+        return serverApiInstance.post<AuthResponse>('/sign-in', { username, tel, country })
     }
 
     static async registration(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-        return serverApiInstance.post<AuthResponse>('/registration', {email, password})
+        return serverApiInstance.post<AuthResponse>('/registration', { email, password })
     }
 
     static async logout(): Promise<void> {
         return serverApiInstance.post('/logout')
     }
+    static async getRefreshToken(): Promise<AxiosResponse<RefreshProps>> {
+        try {
+            const response = await serverApiInstance.get<RefreshProps>('/refresh-token');
+            console.log("reap " + JSON.stringify(response.data.refresh_token))
+            return response;
+        } catch (error) {
+            throw new Error('Failed to fetch refresh token');
+        }
+    }
 
+
+
+    static async getAccessToken(): Promise<AxiosResponse<AccessProps>> {
+        try {
+         
+            const response = await serverApiInstance.get<AccessProps>('/token');
+            console.log("reap " + JSON.stringify(response))
+            return response;
+        } catch (error) {
+            throw new Error('Failed to fetch access token');
+        }
+    }
+
+    static async getUserData(): Promise<AxiosResponse<any>> {
+
+        try {
+            const response = await serverApiInstance.get<PersonalData>(`/personal`);
+            console.log("reap " + JSON.stringify(response.data.access_token))
+            //   localStorage.setItem('token', response.data.access_token);
+            return response;
+        } catch (error) {
+            throw new Error('Failed to fetch access token');
+        }
+
+
+    }
 }
 
 export const personalApi = {
-    
-    
-    
-
-
-AuthAction(data: PersonalData) {
- 
-
-
-    return serverApiInstance.post(`/sign-in`, {
-        username: data.username,
-        country: data.country,
-        tel: data.tel
-      
-    }
-    )
-
-
-
-},
-Test() {
-    return serverApiInstance.get(`hello`, {
-    })
-        .then(response => {
-            console.log("SERVER", response.data);
-            return response.data;
-        })
-        .catch(error => {
-            console.error("Error during signInAction:", error);
-            throw error;
-        });
-}
-/*
-*/
 
 
 
 
 
+    AuthAction(data: PersonalData) {
 
 
 
+        return serverApiInstance.post(`/sign-in`, {
+            username: data.username,
+            country: data.country,
+            tel: data.tel
 
-/*
-
-import axios from 'axios';
-import {AuthResponse} from "../models/response/AuthResponse";
-import {store} from "../index";
-import {IUser} from "../models/IUser";
-
-export const API_URL = `http://localhost:5000/api`
-
-const $api = axios.create({
-    withCredentials: true,
-    baseURL: API_URL
-})
-
-$api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-    return config;
-})
-
-$api.interceptors.response.use((config) => {
-    return config;
-},async (error) => {
-    const originalRequest = error.config;
-    if (error.response.status == 401 && error.config && !error.config._isRetry) {
-        originalRequest._isRetry = true;
-        try {
-            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
-            localStorage.setItem('token', response.data.accessToken);
-            return $api.request(originalRequest);
-        } catch (e) {
-            console.log('НЕ АВТОРИЗОВАН')
         }
+        )
+
+
+
+    },
+    Test() {
+        return serverApiInstance.get(`hello`, {
+        })
+            .then(response => {
+                console.log("SERVER", response.data);
+                return response.data;
+            })
+            .catch(error => {
+                console.error("Error during signInAction:", error);
+                throw error;
+            });
     }
-    throw error;
-})
+    /*
+    */
 
-export default $api;
 
-*/
+
+
+
+
+
+
+
+    /*
+    
+    import axios from 'axios';
+    import {AuthResponse} from "../models/response/AuthResponse";
+    import {store} from "../index";
+    import {IUser} from "../models/IUser";
+    
+    export const API_URL = `http://localhost:5000/api`
+    
+    const $api = axios.create({
+        withCredentials: true,
+        baseURL: API_URL
+    })
+    
+    $api.interceptors.request.use((config) => {
+        config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+        return config;
+    })
+    
+    $api.interceptors.response.use((config) => {
+        return config;
+    },async (error) => {
+        const originalRequest = error.config;
+        if (error.response.status == 401 && error.config && !error.config._isRetry) {
+            originalRequest._isRetry = true;
+            try {
+                const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
+                localStorage.setItem('token', response.data.accessToken);
+                return $api.request(originalRequest);
+            } catch (e) {
+                console.log('НЕ АВТОРИЗОВАН')
+            }
+        }
+        throw error;
+    })
+    
+    export default $api;
+    
+    */
 
 
 

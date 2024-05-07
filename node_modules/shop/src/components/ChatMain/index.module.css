@@ -1,0 +1,7 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 746px) minmax(0, 100%);
+  height: calc(100vh - 112px);
+  position: relative;
+}/*# sourceMappingURL=index.module.css.map */

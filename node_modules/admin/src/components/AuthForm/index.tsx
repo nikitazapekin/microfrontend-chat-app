@@ -44,19 +44,28 @@ const AuthForm = () => {
 
     const handleAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
-        AuthService.login().then(res => {
+        AuthService.login(personalData.username, personalData.country, personalData.tel).then(res => {
             console.log(JSON.stringify(res.data.access_token))
             localStorage.setItem("token", JSON.stringify({ "token": res.data.access_token }))
 
             console.log(res.status)
             if (res.status == 200) {
-                navigate(shopRoutes.chat)
+               // navigate(`/shop/chat/${personalData.username}`)
+               localStorage.setItem("username", personalData.username)
+              navigate(shopRoutes.chat)
             }
         }
         )
     }
+    const han = ()=> {
+        console.log("kk")
+        AuthService.getAccessToken()
+      //  AuthService.getRefreshToken()
+    }
     return (
         <div className={globalStyles.container}>
+
+            <button onClick={han}> fff</button>
             <form action="" className={styles.auth__form__component}>
                 <div className={styles.auth__image__container}>
                     <img className={styles.auth__image} src={Telegram} alt="logo" />

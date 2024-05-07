@@ -1,0 +1,92 @@
+/*@keyframes fly {
+    0% {
+        transform: translateY(0px) translateX(0px) rotateX(0deg) rotateY(0deg)
+    }
+    20% {
+        transform: translateY(5px) translateX(5px) rotateX(5deg) rotateY(5deg)
+    }
+    40% {
+        transform: translateY(-5px) translateX(-5px) rotateX(-5deg) rotateY(-5deg)
+    }
+
+
+    60% {
+        transform: translateY(5px) translateX(5px) rotateX(-5deg) rotateY(-5deg)
+    }
+    80% {
+        transform: translateY(-5px) translateX(-5px) rotateX(5deg) rotateY(5deg)
+    }
+
+    100% {
+        transform: translateY(0px) translateX(0px) rotateX(0deg) rotateY(0deg)
+    }
+}
+
+.preview {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 600px;
+        background: linear-gradient(75deg, #158ED5, #34AFEC);
+        height: 465px;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: minmax(100px, 228px);
+        height: auto;
+    }
+
+    &__logo {
+        width: 100%;
+        animation: fly 0.9s linear infinite;
+        perspective: 300px;
+    }
+}
+
+ */
+@keyframes fly {
+  0% {
+    transform: translateY(0px) translateX(0px) rotateX(0deg) rotateY(0deg);
+  }
+  20% {
+    transform: translateY(5px) translateX(5px) rotateX(5deg) rotateY(5deg);
+  }
+  40% {
+    transform: translateY(-5px) translateX(-5px) rotateX(-5deg) rotateY(-5deg);
+  }
+  60% {
+    transform: translateY(5px) translateX(5px) rotateX(-5deg) rotateY(-5deg);
+  }
+  80% {
+    transform: translateY(-5px) translateX(-5px) rotateX(5deg) rotateY(5deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotateX(0deg) rotateY(0deg);
+  }
+}
+.preview__header {
+  width: 100%;
+  height: auto;
+  /*  
+  display: flex;
+  align-items: center;
+  justify-content: center */
+}
+.preview__inner__content {
+  min-height: 465px;
+  background: linear-gradient(75deg, #158ED5, #34AFEC);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: minmax(100px, 228px);
+}
+.preview__logo {
+  animation: fly 0.9s linear infinite;
+  perspective: 300px;
+  width: 100%;
+}/*# sourceMappingURL=styles.module.css.map */
