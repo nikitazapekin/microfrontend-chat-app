@@ -1,30 +1,21 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import { AxiosResponse } from 'axios';
-/*
-const apiHost = process.env.REACT_APP_API_BASE_URL;
-const serverApiInstance: AxiosInstance = axios.create({
-    baseURL: `http://localhost:5000/${apiHost}/`,
-});
-*/
-
+import { useNavigate } from 'react-router-dom';
+//import { adminRoutes } from '@packages/shared/src/routes/admin'
+//const navigate = useNavigate()
+//import { useAppDispatch } from '../src/hooks/redux';
+//const dispatch = useAppDispatch()
 interface PersonalData {
     username: string,
     tel: string,
     country: string
 }
-
 export interface AuthResponse {
+    token: string;
+    error: string
 
-    access_token: string;
-
-    username: string;
-    /*
-    data :{
 }
-*/
-}
-
 interface RefreshProps {
     refresh_token: string
 }
@@ -34,13 +25,6 @@ interface AccessProps {
 }
 
 interface PersonalData {
-    /* username: string,
-     tel: string, 
-     country: string,
-     chats: Object,
-     */
-
-
     access_token: string,
     username: string,
     country: string,
@@ -66,9 +50,9 @@ serverApiInstance.interceptors.request.use((config) => {
 serverApiInstance.interceptors.response.use((config) => {
     return config;
 }, async (error) => {
-    console.log("INTERCEEEEEEEEEEEEEEEEEEEEEEEEEEEEE{TOR")
+    console.log("ФУНКЦИЯ-ИТЕРСЕПТОР")
     const user = localStorage.getItem("username")
-    console.log("USER"+user)
+    console.log("USER" + user)
     const originalRequest = error.config;
     console.log("ERRR" + JSON.stringify(error))
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
@@ -77,11 +61,15 @@ serverApiInstance.interceptors.response.use((config) => {
             const token = localStorage.getItem("token")
             console.log("TOK" + token)
             const response = await axios.get<AuthResponse>(`${API_URL}token?token=${token}&user=${user}`, { withCredentials: true })
-            localStorage.setItem('token', response.data.access_token);
-            console.log("new access token" +JSON.stringify(response.data.access_token))
+
+            localStorage.setItem('token', JSON.stringify({ token: response.data.token }));
+            console.log("new access token" + JSON.stringify(response.data))
             return serverApiInstance.request(originalRequest);
         } catch (e) {
             console.log('НЕ АВТОРИЗОВАН')
+            localStorage.removeItem('token')
+            //   navigate(adminRoutes.auth)
+
         }
     }
     throw error;
@@ -115,8 +103,8 @@ export default class AuthService {
 
     static async getAccessToken(): Promise<AxiosResponse<AccessProps>> {
         try {
-         
-            const response = await serverApiInstance.get<AccessProps>('/token');
+
+            const response = await serverApiInstance.get<AccessProps>('token');
             console.log("reap " + JSON.stringify(response))
             return response;
         } catch (error) {
@@ -129,7 +117,7 @@ export default class AuthService {
         try {
             const response = await serverApiInstance.get<PersonalData>(`/personal`);
             console.log("reap " + JSON.stringify(response.data.access_token))
-            //   localStorage.setItem('token', response.data.access_token);
+
             return response;
         } catch (error) {
             throw new Error('Failed to fetch access token');
@@ -185,41 +173,52 @@ export const personalApi = {
 
     /*
     
-    import axios from 'axios';
-    import {AuthResponse} from "../models/response/AuthResponse";
-    import {store} from "../index";
-    import {IUser} from "../models/IUser";
-    
-    export const API_URL = `http://localhost:5000/api`
-    
-    const $api = axios.create({
-        withCredentials: true,
-        baseURL: API_URL
+ 
+
+import { adminRoutes } from '@packages/shared/src/routes/admin'
+import styles from "./index.module.scss"
+import { Link, useNavigate } from "react-router-dom";
+import Telegram from "../../assets/telegram.png"
+import Telephone from "../../assets/phone-call.png"
+import globalStyles from "../../styles/index.module.scss"
+import Country from "../../assets/world.png"
+import User from "../../assets/user (2).png"
+import { shopRoutes } from '@packages/shared/src/routes/shop'
+import { TypePersonalData } from "@packages/shared/store/action-creators/AuthAcrtionCreator"
+
+import { IsUnauthorizedAction } from "@packages/shared/store/action-creators/IsAuthorizedActionCreator"
+import { useEffect, useState } from 'react';
+import { useAppDispatch } from '@/hooks/redux';
+import AuthService, { personalApi } from "@packages/shared/API/auth"
+import { useSelector } from 'react-redux';
+import { authSelector } from "@packages/shared/store/selectors/auth.selector"
+interface Types {
+    username: string,
+    country: string,
+    tel: string,
+    password: string
+}
+const AuthForm = () => {
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+    const data = useSelector(authSelector)
+    const [personalData, setPersonalData] = useState<Types>({
+        username: "",
+        country: "",
+        tel: "",
+        password: ""
     })
-    
-    $api.interceptors.request.use((config) => {
-        config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-        return config;
-    })
-    
-    $api.interceptors.response.use((config) => {
-        return config;
-    },async (error) => {
-        const originalRequest = error.config;
-        if (error.response.status == 401 && error.config && !error.config._isRetry) {
-            originalRequest._isRetry = true;
-            try {
-                const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
-                localStorage.setItem('token', response.data.accessToken);
-                return $api.request(originalRequest);
-            } catch (e) {
-                console.log('НЕ АВТОРИЗОВАН')
-            }
-        }
-        throw error;
-    })
-    
-    export default $api;
+    const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target
+        setPersonalData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+    useEffect(() => {
+        dispatch(TypePersonalData(personalData))
+    }, [personalData])
+
     
     */
 

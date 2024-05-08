@@ -30,7 +30,7 @@ const AuthSlice = createSlice({
       state.username = action.payload.username;
       state.country = action.payload.country;
       state.tel = action.payload.tel;
-      //state.password = action.payload.password
+ 
       console.log("STATEE" + JSON.stringify(state))
     }
   },

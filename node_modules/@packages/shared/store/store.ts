@@ -9,11 +9,13 @@ import { calculatorSlice } from "./slices/CalculatorSlice";
 import appSlicee from "./slices/AppSlice"
 import AuthSlice from "./slices/AuthSlice";
 import SidebarSlice from "./slices/SidebarSlice";
+import IsUnauthorized from "./slices/IsUnauthorized";
 const rootReducer = combineReducers({
 
  appSlicee: appSlicee,
  AuthSlice: AuthSlice,
- SidebarSlice: SidebarSlice
+ SidebarSlice: SidebarSlice,
+ IsUnauthorized: IsUnauthorized
 
 })
 const persistConfig = getPersistConfig({

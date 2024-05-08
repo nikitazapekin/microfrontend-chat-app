@@ -5,19 +5,20 @@ import styles from "./index.module.scss"
 import { useEffect } from "react";
 import AuthService from "@packages/shared/API/auth";
 const ChatPage = () => {
-    useEffect(()=> {
+    useEffect(() => {
         console.log("get")
-AuthService.getUserData()
+        AuthService.getUserData()
     }, [])
-    return ( 
-        <>
-        <div className={styles.page}>
 
-        <Header />
-    <ChatMain />
-        </div>
+
+    return (
+        <>
+            <div className={styles.page}>
+                <Header />
+                <ChatMain />
+            </div>
         </>
-     );
+    );
 }
- 
+
 export default ChatPage;

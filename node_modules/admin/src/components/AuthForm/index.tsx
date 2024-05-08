@@ -10,6 +10,8 @@ import Country from "../../assets/world.png"
 import User from "../../assets/user (2).png"
 import { shopRoutes } from '@packages/shared/src/routes/shop'
 import { TypePersonalData } from "@packages/shared/store/action-creators/AuthAcrtionCreator"
+
+import { IsUnauthorizedAction } from "@packages/shared/store/action-creators/IsAuthorizedActionCreator"
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '@/hooks/redux';
 import AuthService, { personalApi } from "@packages/shared/API/auth"
@@ -45,14 +47,15 @@ const AuthForm = () => {
     const handleAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         AuthService.login(personalData.username, personalData.country, personalData.tel).then(res => {
-            console.log(JSON.stringify(res.data.access_token))
-            localStorage.setItem("token", JSON.stringify({ "token": res.data.access_token }))
+            console.log(JSON.stringify(res.data.token))
+            localStorage.setItem("token", JSON.stringify({ "token": res.data.token}))
 
             console.log(res.status)
             if (res.status == 200) {
                // navigate(`/shop/chat/${personalData.username}`)
                localStorage.setItem("username", personalData.username)
               navigate(shopRoutes.chat)
+              dispatch(IsUnauthorizedAction({isUnauthorized: true}))
             }
         }
         )
@@ -137,10 +140,7 @@ const AuthForm = () => {
                     <button className={styles.auth__btn}
                         onClick={handleAuth}
                     >
-                        {/*
-                        <Link to={shopRoutes.chat}>
-                        </Link>
-    */}
+   
                         START MESSAGING
                     </button>
                 </div>
