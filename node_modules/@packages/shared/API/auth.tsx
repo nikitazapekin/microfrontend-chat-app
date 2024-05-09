@@ -1,11 +1,6 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import { AxiosResponse } from 'axios';
-import { useNavigate } from 'react-router-dom';
-//import { adminRoutes } from '@packages/shared/src/routes/admin'
-//const navigate = useNavigate()
-//import { useAppDispatch } from '../src/hooks/redux';
-//const dispatch = useAppDispatch()
 interface PersonalData {
     username: string,
     tel: string,
@@ -40,13 +35,11 @@ const serverApiInstance: AxiosInstance = axios.create({
     withCredentials: true,
 
 });
-
 serverApiInstance.interceptors.request.use((config) => {
     console.log("INTERCEPT" + localStorage.getItem('token'))
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config;
 })
-
 serverApiInstance.interceptors.response.use((config) => {
     return config;
 }, async (error) => {
@@ -68,14 +61,10 @@ serverApiInstance.interceptors.response.use((config) => {
         } catch (e) {
             console.log('НЕ АВТОРИЗОВАН')
             localStorage.removeItem('token')
-            //   navigate(adminRoutes.auth)
-
         }
     }
     throw error;
 })
-/*
-*/
 
 export default class AuthService {
     static async login(username: string, country: string, tel: string): Promise<AxiosResponse<AuthResponse>> {
@@ -126,27 +115,14 @@ export default class AuthService {
 
     }
 }
-
 export const personalApi = {
-
-
-
-
-
     AuthAction(data: PersonalData) {
-
-
-
         return serverApiInstance.post(`/sign-in`, {
             username: data.username,
             country: data.country,
             tel: data.tel
-
         }
         )
-
-
-
     },
     Test() {
         return serverApiInstance.get(`hello`, {
@@ -160,67 +136,7 @@ export const personalApi = {
                 throw error;
             });
     }
-    /*
-    */
 
-
-
-
-
-
-
-
-
-    /*
-    
- 
-
-import { adminRoutes } from '@packages/shared/src/routes/admin'
-import styles from "./index.module.scss"
-import { Link, useNavigate } from "react-router-dom";
-import Telegram from "../../assets/telegram.png"
-import Telephone from "../../assets/phone-call.png"
-import globalStyles from "../../styles/index.module.scss"
-import Country from "../../assets/world.png"
-import User from "../../assets/user (2).png"
-import { shopRoutes } from '@packages/shared/src/routes/shop'
-import { TypePersonalData } from "@packages/shared/store/action-creators/AuthAcrtionCreator"
-
-import { IsUnauthorizedAction } from "@packages/shared/store/action-creators/IsAuthorizedActionCreator"
-import { useEffect, useState } from 'react';
-import { useAppDispatch } from '@/hooks/redux';
-import AuthService, { personalApi } from "@packages/shared/API/auth"
-import { useSelector } from 'react-redux';
-import { authSelector } from "@packages/shared/store/selectors/auth.selector"
-interface Types {
-    username: string,
-    country: string,
-    tel: string,
-    password: string
-}
-const AuthForm = () => {
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate()
-    const data = useSelector(authSelector)
-    const [personalData, setPersonalData] = useState<Types>({
-        username: "",
-        country: "",
-        tel: "",
-        password: ""
-    })
-    const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target
-        setPersonalData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
-    useEffect(() => {
-        dispatch(TypePersonalData(personalData))
-    }, [personalData])
-
-    
-    */
 
 
 

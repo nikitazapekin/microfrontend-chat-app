@@ -1,91 +1,11 @@
 import styles from "./index.module.scss"
 import Tick from  "../../assets/tick 2.png"
 import ChatKeypad from "../ChatKeypad"
+import { useEffect } from "react"
+//import WebSocketService from "@packages/shared/API/websockets"
 const ChatWithUser = () => {
     const messages = [
-        {
-            message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
-            username: "Test",
-            date: "12-09-2024",
-            time: "12:00",
-            isRead: false,
-            id: 1,
-            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
-            isGroup: false
-        }, 
-
-
-        {
-            message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
-            username: "Test",
-            date: "12-09-2024",
-            time: "12:00",
-            isRead: false,
-            id: 1,
-            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
-            isGroup: false
-        }, 
-
-
-        {
-            message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
-            username: "Test",
-            date: "12-09-2024",
-            time: "12:00",
-            isRead: false,
-            id: 1,
-            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
-            isGroup: false
-        }, 
-
-
-
-        {
-            message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
-            username: "Test",
-            date: "12-09-2024",
-            time: "12:00",
-            isRead: false,
-            id: 1,
-            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
-            isGroup: false
-        }, 
-
-        {
-            message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
-            username: "Test",
-            date: "12-09-2024",
-            time: "12:00",
-            isRead: false,
-            id: 1,
-            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
-            isGroup: false
-        }, 
-        {
-            message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
-            username: "Test",
-            date: "12-09-2024",
-            time: "12:00",
-            isRead: false,
-            id: 1,
-            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
-            isGroup: false
-        }, 
-
-
-
-        {
-            message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
-            username: "Test",
-            date: "12-09-2024",
-            time: "12:00",
-            isRead: false,
-            id: 1,
-            logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
-            isGroup: false
-        }, 
-
-
+  
         {
             message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
             username: "Test",
@@ -96,19 +16,20 @@ const ChatWithUser = () => {
             logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
             isGroup: false
         }
-
     ]
     const isSelected = false
+
+    useEffect(()=> {  //ИСПРАААААААААААААААААААААВВВВВВВВВВВИИИИИИИИИИИИИТЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬ БАГГГГГГГГГГГГГГГГГГГГГГГ
+        const token = localStorage.getItem('token')
+        console.log("WS TOKEEEM", token)
+  //      WebSocketService.connect(token)
+        console.log("connection")
+    }, [])
     return (
         <div className={styles.chat}>
          
          
-         {/*
-            <div className={styles.test}>
-            ewwe
-            </div>
-    */}
-
+ 
     <ChatKeypad />
             <div className={styles.chat__inner}>
                 {isSelected ? (

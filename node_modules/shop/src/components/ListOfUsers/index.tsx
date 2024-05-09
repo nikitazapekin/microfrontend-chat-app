@@ -1,7 +1,10 @@
 import styles from "./index.module.scss"
 
 import Tick from "../../assets/tick 2.png"
+ 
 const users = [
+
+    /*
     { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
 
     { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
@@ -33,11 +36,12 @@ const users = [
 
     { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
 
+    */
     { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
 
 ]
 const ListOfUsers = () => {
+
     return (
         <div className={styles.list}>
             <div className={styles.list__users}>
