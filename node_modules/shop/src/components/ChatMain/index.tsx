@@ -179,11 +179,8 @@ const authData= useSelector(authSelector)
         token: localStorage.getItem("token")
    
     };
-
-
     const [ws, setWs] = useState(null);
     const [trades, setTrades] = useState([]);
-  
     useEffect(() => {
       const wsClient = new WebSocket(URL_WEB_SOCKET);
       wsClient.onopen = () => {
@@ -215,9 +212,6 @@ axios.get( `http://localhost:5000/${`chat`}/token-start?user=${authData.username
  
     console.error('Произошла ошибка при запросе:', error);
   });
-      /*
-const resp = AuthService.getAccessToken()
-console.log("GOT TOKEN " +JSON.stringify(resp)) */
     }, [])
     return (
         <>

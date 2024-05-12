@@ -2,48 +2,43 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface PersonalInformationTypes {
-    // isLoading: boolean;
-    // error: string | null;
-  //  isOpen: boolean
-
-
   access_token: string,
   avatar: string,
   chats: null,
   country: string,
   description: string,
-  tel: string ,
-  username:string
+  tel: string,
+  username: string
 }
 
 const initialState: PersonalInformationTypes = {
- 
-   // isOpen: false
-   access_token: "",
-   avatar: "",
-   chats: null,
-   country: "",
-   description: "",
-   tel: "" ,
-   username:""
+
+  // isOpen: false
+  access_token: "",
+  avatar: "",
+  chats: null,
+  country: "",
+  description: "",
+  tel: "",
+  username: ""
 };
 
 const PersonalInformationSlice = createSlice({
-    name: 'app',
-    initialState,
-    reducers: {
-        setLoading(state, action: PayloadAction<boolean>) {
-          
-        },
-        setError(state, action: PayloadAction<string | null>) {
-         
-        },
+  name: 'app',
+  initialState,
+  reducers: {
     
-        setOpen(state) {
-          //  state.isOpen = !state.isOpen
-        }
-    },
+    setPersonalInformation(state, action: PayloadAction<PersonalInformationTypes>) {
+      console.log("payload" + JSON.stringify(action.payload))
+      state.username = action.payload.username
+      state.avatar= action.payload.avatar
+      state.country = action.payload.country
+      state.tel = action.payload.tel
+      state.description = action.payload.description
+    }
+  },
 });
 
-export const { setLoading, setError, setOpen } = PersonalInformationSlice.actions;
+export const { setPersonalInformation } = PersonalInformationSlice.actions;
 export default PersonalInformationSlice.reducer;
+ 

@@ -6,6 +6,7 @@ import AuthSlice from "../slices/AuthSlice";
 //import { setAuth } from "../slices/AuthSlice";
 import { setOpen } from "../slices/SidebarSlice";
 import PersonalService from "@packages/shared/API/personal"
+import { setPersonalInformation } from "../slices/PersonalInformationSlice";
 interface Props {
     username: string,
     country: string,
@@ -18,16 +19,35 @@ export const PersonalInformationAction = () => async (dispatch: AppDispatch) => 
 
     try {
         const token = localStorage.getItem("token");
-        console.log("TOKEN FROM GET PERSONAL INFORMATION" + token);
+    
         const response = await PersonalService.getPersonalData();
-        console.log("GETTTTT" + JSON.stringify(response));
+      
     } catch (e) {
         console.log("error" + e);
     }
 }
 
 
+export const PersonalInformationByUsernameAction = (username: string) => async (dispatch: AppDispatch) => {
 
-//export const SidebarAction =()=>(dispatch: AppDispatch )  => {
-//dispatch(setOpen())
-//}
+    try {
+
+        const response = await PersonalService.getPersonalDataByUsername(username);
+        console.log("GETTTTT BY USERNAME" + JSON.stringify(response));
+     //  dispatch(resp)
+     dispatch(setPersonalInformation(response.data))
+    } catch (e) {
+        console.log("error" + e);
+    }
+}
+
+/*
+
+    "access_token": "newAccessToken",
+        "username":     foundUsername,
+        "country":      country,
+        "tel":          tel,
+        "chats":        chats,
+        "avatar":       avatar,
+        "description": " description",
+        */

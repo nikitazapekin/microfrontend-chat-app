@@ -7,16 +7,17 @@ import { SidebarAction } from "@packages/shared/store/action-creators/SidebarAct
 import { useAppDispatch } from '@/hooks/redux';
 import AuthService, { personalApi } from "@packages/shared/API/auth"
 import { useSelector } from 'react-redux';
-import { authSelector } from "@packages/shared/store/selectors/auth.selector"
+import { personalSelector } from "@packages/shared/store/selectors/personalInformation.selector"
 
 import { isUnauthorizedSelector } from "@packages/shared/store/selectors/isUnauthorized.selector"
+import { useEffect } from "react";
 
 
 const Sidebar = () => {
 
 
     const data = useSelector(sidebarSelector)
-    const isAuthorized = useSelector(isUnauthorizedSelector)
+    const personalData = useSelector(personalSelector)
     const dispatch = useAppDispatch()
     const handleDispatch = () => {
         dispatch(SidebarAction())
@@ -29,7 +30,8 @@ const Sidebar = () => {
                     <div className={styles.sidebar__header}>
                         <img src={Logo} alt="logo" className={styles.sidebar__header__logo} />
                         <p className={styles.sidebar__header__title}>
-                            Nikita {JSON.stringify(isAuthorized.isUnauthorized)}
+                           
+                            {personalData.username}
                         </p>
                     </div>
                     <div className={styles.sidebar__main}>
@@ -59,11 +61,3 @@ const Sidebar = () => {
 }
 
 export default Sidebar;
-
-/*
-import {sidebarSelector}  from "@packages/shared/store/selectors/sidebar.selector"
-import {SidebarAction} from "@packages/shared/store/action-creators/SidebarActionCreateor"
-const Header = () => {
-    const isSelected =true
-console.log("SIDE"+sidebarSelector)
-*/

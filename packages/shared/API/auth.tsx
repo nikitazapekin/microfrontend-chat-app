@@ -36,27 +36,27 @@ const serverApiInstance: AxiosInstance = axios.create({
 
 });
 serverApiInstance.interceptors.request.use((config) => {
-    console.log("INTERCEPT" + localStorage.getItem('token'))
+  //  console.log("INTERCEPT" + localStorage.getItem('token'))
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config;
 })
 serverApiInstance.interceptors.response.use((config) => {
     return config;
 }, async (error) => {
-    console.log("ФУНКЦИЯ-ИТЕРСЕПТОР")
+  //  console.log("ФУНКЦИЯ-ИТЕРСЕПТОР")
     const user = localStorage.getItem("username")
-    console.log("USER" + user)
+ //   console.log("USER" + user)
     const originalRequest = error.config;
-    console.log("ERRR" + JSON.stringify(error))
+    // console.log("ERRR" + JSON.stringify(error))
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
             const token = localStorage.getItem("token")
-            console.log("TOK" + token)
+           // console.log("TOK" + token)
             const response = await axios.get<AuthResponse>(`${API_URL}token?token=${token}&user=${user}`, { withCredentials: true })
 
             localStorage.setItem('token', JSON.stringify({ token: response.data.token }));
-            console.log("new access token" + JSON.stringify(response.data))
+         //   console.log("new access token" + JSON.stringify(response.data))
             return serverApiInstance.request(originalRequest);
         } catch (e) {
             console.log('НЕ АВТОРИЗОВАН')
@@ -81,7 +81,7 @@ export default class AuthService {
     static async getRefreshToken(): Promise<AxiosResponse<RefreshProps>> {
         try {
             const response = await serverApiInstance.get<RefreshProps>('/refresh-token');
-            console.log("reap " + JSON.stringify(response.data.refresh_token))
+         //   console.log("reap " + JSON.stringify(response.data.refresh_token))
             return response;
         } catch (error) {
             throw new Error('Failed to fetch refresh token');

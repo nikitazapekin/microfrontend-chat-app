@@ -25,10 +25,7 @@ const ChatPage = () => {
     return (
         <>
             <div className={styles.page}>
-                <h1>
-
-                    Is authorized {JSON.stringify(isAuthorized)}
-                </h1>
+ 
                 <Header />
                 <ChatMain />
             </div>
@@ -38,16 +35,3 @@ const ChatPage = () => {
 
 export default ChatPage;
 
-
-/*
-import { useSelector } from 'react-redux';
-import { authSelector } from "@packages/shared/store/selectors/auth.selector"
-
-import { isUnauthorizedSelector } from "@packages/shared/store/selectors/isUnauthorized.selector"
-
-
-const Sidebar = () => {
-
-
-    const data = useSelector(sidebarSelector)
-    */

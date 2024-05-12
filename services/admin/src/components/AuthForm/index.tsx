@@ -17,6 +17,8 @@ import { useAppDispatch } from '@/hooks/redux';
 import AuthService, { personalApi } from "@packages/shared/API/auth"
 import { useSelector } from 'react-redux';
 import { authSelector } from "@packages/shared/store/selectors/auth.selector"
+
+import { PersonalInformationByUsernameAction } from "@packages/shared/store/action-creators/PersonalInformationActionCreator"
 interface Types {
     username: string,
     country: string,
@@ -48,22 +50,25 @@ const AuthForm = () => {
         event.preventDefault()
         AuthService.login(personalData.username, personalData.country, personalData.tel).then(res => {
             console.log(JSON.stringify(res.data.token))
-            localStorage.setItem("token", JSON.stringify({ "token": res.data.token}))
+            localStorage.setItem("token", JSON.stringify({ "token": res.data.token }))
 
             console.log(res.status)
             if (res.status == 200) {
-               // navigate(`/shop/chat/${personalData.username}`)
-               localStorage.setItem("username", personalData.username)
-              navigate(shopRoutes.chat)
-              dispatch(IsUnauthorizedAction({isUnauthorized: true}))
+                // navigate(`/shop/chat/${personalData.username}`)
+                localStorage.setItem("username", personalData.username)
+                navigate(shopRoutes.chat)
+                console.log("УСПЕШНАЯ АВТОРИЗВЦИЯ")
+                dispatch(IsUnauthorizedAction({ isUnauthorized: true }))
+                dispatch(PersonalInformationByUsernameAction(personalData.username))
+
             }
         }
         )
     }
-    const han = ()=> {
+    const han = () => {
         console.log("kk")
         AuthService.getAccessToken()
-      //  AuthService.getRefreshToken()
+        //  AuthService.getRefreshToken()
     }
     return (
         <div className={globalStyles.container}>
@@ -127,7 +132,7 @@ const AuthForm = () => {
 
 
 
-       
+
 
                 </div>
                 <div className={styles.auth__check__block}>
@@ -140,7 +145,7 @@ const AuthForm = () => {
                     <button className={styles.auth__btn}
                         onClick={handleAuth}
                     >
-   
+
                         START MESSAGING
                     </button>
                 </div>
