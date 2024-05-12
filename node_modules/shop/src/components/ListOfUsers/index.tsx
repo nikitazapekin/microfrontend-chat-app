@@ -4,39 +4,7 @@ import Tick from "../../assets/tick 2.png"
  
 const users = [
 
-    /*
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-    */
+   
     { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
 
 ]

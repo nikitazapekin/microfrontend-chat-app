@@ -1,11 +1,11 @@
 import styles from "./index.module.scss"
-import Tick from  "../../assets/tick 2.png"
+import Tick from "../../assets/tick 2.png"
 import ChatKeypad from "../ChatKeypad"
 import { useEffect } from "react"
 //import WebSocketService from "@packages/shared/API/websockets"
 const ChatWithUser = () => {
     const messages = [
-  
+
         {
             message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
             username: "Test",
@@ -19,18 +19,15 @@ const ChatWithUser = () => {
     ]
     const isSelected = false
 
-    useEffect(()=> {  //ИСПРАААААААААААААААААААААВВВВВВВВВВВИИИИИИИИИИИИИТЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬ БАГГГГГГГГГГГГГГГГГГГГГГГ
+    useEffect(() => {  //ИСПРАААААААААААААААААААААВВВВВВВВВВВИИИИИИИИИИИИИТЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬ БАГГГГГГГГГГГГГГГГГГГГГГГ
         const token = localStorage.getItem('token')
         console.log("WS TOKEEEM", token)
-  //      WebSocketService.connect(token)
+        //      WebSocketService.connect(token)
         console.log("connection")
     }, [])
     return (
         <div className={styles.chat}>
-         
-         
- 
-    <ChatKeypad />
+            <ChatKeypad />
             <div className={styles.chat__inner}>
                 {isSelected ? (
                     <div className={styles.chat__select__chat}>
@@ -49,10 +46,10 @@ const ChatWithUser = () => {
                                         {item.message}
                                     </p>
                                     <div className={styles.message__time__block}>
-                                    <p className={styles.message__time}>
-                                        {item.time}
-                                    </p>
-                                    <img src={Tick} alt="tick" className={styles.message__time__tick} />
+                                        <p className={styles.message__time}>
+                                            {item.time}
+                                        </p>
+                                        <img src={Tick} alt="tick" className={styles.message__time__tick} />
                                     </div>
                                 </div>
                             </div>

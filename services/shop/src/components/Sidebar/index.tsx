@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux';
 import { authSelector } from "@packages/shared/store/selectors/auth.selector"
 
 import { isUnauthorizedSelector } from "@packages/shared/store/selectors/isUnauthorized.selector"
+
+
 const Sidebar = () => {
 
 
@@ -19,6 +21,7 @@ const Sidebar = () => {
     const handleDispatch = () => {
         dispatch(SidebarAction())
     }
+
     return (
         <>
             <div className={styles.sidebar} style={{ transform: data.isOpen ? `translateX(0)` : `translateX(-100%)` }}>

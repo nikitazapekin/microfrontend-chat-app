@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Link, Outlet} from "react-router-dom";
 // @ts-ignore
 import {adminRoutes} from '@packages/shared/src/routes/admin'
- 
  import styles from "./App.module.scss"
 import "./test.scss"
 export const App = () => {
@@ -14,7 +13,7 @@ export const App = () => {
           <div className={styles.test}>
             ffffffffffffff
           </div>
-        {/*    <Outlet/> */}
+    
         </div>
     );
 };
