@@ -49,12 +49,8 @@ const AuthForm = () => {
     const handleAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         AuthService.login(personalData.username, personalData.country, personalData.tel).then(res => {
-            console.log(JSON.stringify(res.data.token))
             localStorage.setItem("token", JSON.stringify({ "token": res.data.token }))
-
-            console.log(res.status)
             if (res.status == 200) {
-                // navigate(`/shop/chat/${personalData.username}`)
                 localStorage.setItem("username", personalData.username)
                 navigate(shopRoutes.chat)
                 console.log("УСПЕШНАЯ АВТОРИЗВЦИЯ")
@@ -66,9 +62,7 @@ const AuthForm = () => {
         )
     }
     const han = () => {
-        console.log("kk")
         AuthService.getAccessToken()
-        //  AuthService.getRefreshToken()
     }
     return (
         <div className={globalStyles.container}>
@@ -158,48 +152,3 @@ const AuthForm = () => {
 export default AuthForm;
 
 
-
-/*
-
-
-import {createRoot} from "react-dom/client";
-import { RouterProvider} from "react-router-dom";
-import {router} from "@/router/Router";
-import { PersistGate } from 'redux-persist/integration/react';
-import {Provider, useDispatch} from "react-redux"; 
-import { persistor, store } from "@packages/shared/store/store"
- 
-import { setLoading } from "@packages/shared/store/slices/AppSlice";
-const root = document.getElementById('root')
-
-if(!root) {
-    throw new Error('root not found')
-}
-
-const container = createRoot(root)
-
-const SomeComponent = () => {
-  const dispatch = useDispatch();  
-
-  
-  dispatch(setLoading(true));  
-  
-  return (
-    <div>
-     
-    </div>
-  );
-}
-
-container.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <RouterProvider router={router} />
-      <SomeComponent /> 
-    </PersistGate>
-  </Provider>
-)
-
-
-
-*/

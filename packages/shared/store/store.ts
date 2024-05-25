@@ -5,19 +5,19 @@ import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, R
 import storage from 'redux-persist/lib/storage';
 import type { ThunkAction, Action } from '@reduxjs/toolkit';
 import { calculatorSlice } from "./slices/CalculatorSlice";
-//import AppSlice from "./slices/AppSlice";
 import appSlicee from "./slices/AppSlice"
 import AuthSlice from "./slices/AuthSlice";
 import SidebarSlice from "./slices/SidebarSlice";
 import IsUnauthorized from "./slices/IsUnauthorized";
 import PersonalInformationSlice from "./slices/PersonalInformationSlice";
+import SearchUser from "./slices/SearchUser";
 const rootReducer = combineReducers({
-
  appSlicee: appSlicee,
  AuthSlice: AuthSlice,
  SidebarSlice: SidebarSlice,
  IsUnauthorized: IsUnauthorized, 
- PersonalInformationSlice: PersonalInformationSlice
+ PersonalInformationSlice: PersonalInformationSlice,
+ SearchUser: SearchUser
 
 })
 const persistConfig = getPersistConfig({

@@ -9,7 +9,7 @@ export interface SidebarTypes {
 }
 
 const initialState: SidebarTypes = {
-  
+
    isOpen: false
 };
 

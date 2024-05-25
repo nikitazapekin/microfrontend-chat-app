@@ -10,9 +10,7 @@ interface PersonalData {
 }
 
 export interface AuthResponse {
-
     access_token: string;
-
     username: string;
 
 }
@@ -24,10 +22,10 @@ export interface PersonalInformationTypes {
     chats: null,
     country: string,
     description: string,
-    tel: string ,
-    username:string
-  }
-  
+    tel: string,
+    username: string
+}
+
 const API_URL = `http://localhost:5000/${`chat`}/`
 const serverApiInstance: AxiosInstance = axios.create({
     baseURL: API_URL,
@@ -44,14 +42,13 @@ serverApiInstance.interceptors.response.use((config) => {
     return config;
 }, async (error) => {
     const originalRequest = error.config;
-   // console.log("ERRR" + JSON.stringify(error))
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
 
             const response = await axios.get<AuthResponse>(`${API_URL}/token`, { withCredentials: true })
 
-            console.log("PERSONAL TOKEEEEEEEEEEEN" +JSON.stringify(response))
+            console.log("PERSONAL TOKEEEEEEEEEEEN" + JSON.stringify(response))
             localStorage.setItem('token', response.data.access_token);
             return serverApiInstance.request(originalRequest);
         } catch (e) {
@@ -62,13 +59,13 @@ serverApiInstance.interceptors.response.use((config) => {
 })
 export default class PersonalService {
     static async getPersonalData(): Promise<AxiosResponse<AuthResponse>> {
-       
+
         return serverApiInstance.get<AuthResponse>('/personal')
     }
 
 
     static async getPersonalDataByUsername(username: string): Promise<AxiosResponse<PersonalInformationTypes>> {
-       
+
         return serverApiInstance.get<PersonalInformationTypes>(`/personal-username?user=${username}`)
     }
 }

@@ -31,10 +31,7 @@ export const PersonalInformationAction = () => async (dispatch: AppDispatch) => 
 export const PersonalInformationByUsernameAction = (username: string) => async (dispatch: AppDispatch) => {
 
     try {
-
         const response = await PersonalService.getPersonalDataByUsername(username);
-        console.log("GETTTTT BY USERNAME" + JSON.stringify(response));
-     //  dispatch(resp)
      dispatch(setPersonalInformation(response.data))
     } catch (e) {
         console.log("error" + e);

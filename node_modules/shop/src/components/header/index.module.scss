@@ -18,14 +18,7 @@
     align-items: center;
     column-gap: 40px;
     padding: 0 33px;
-    /*
-&__sidebar {
-    width: 300px;
-    height: 100%;
-    background-color: red;
-    position: absolute;
-    left: 0;
-} */
+
     &__burger {
         position: relative;
         height: 40px;
@@ -51,24 +44,22 @@
         outline: none;
         cursor: pointer;
         height: 40px;
-     //   padding-left: 40px;
         background-color: $light-gray;
         font-weight: 400;
         font-size: 24px;
         font-family: $font-family-open-sans;
         color: #c3bfbc;
     }
+
     &__input::placeholder {
         font-weight: 400;
         font-size: 24px;
-     //   text-align: center;
         color: #6e6e6e;
         padding-left: 40px;
     }
 }
 
 .right {
-  //  background-color: rgb(19, 230, 29);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,11 +75,12 @@
             font-family: $font-family-open-sans;
             color: $black;
         }
+
         &__last {
             font-weight: 400;
-font-size: 24px;
- 
-color: $gray;
+            font-size: 24px;
+
+            color: $gray;
         }
     }
 
