@@ -4,7 +4,11 @@ import ChatKeypad from "../ChatKeypad"
 import { useEffect } from "react"
 import { useSelector } from 'react-redux';
 import { selectedChatSelector } from "@packages/shared/store/selectors/selectedChat.selector"
-const ChatWithUser = () => {
+interface ChatWithUserProps {
+    handleSendMessage: () => void;
+    handleSetMessage: (message: string) => void;
+}
+const ChatWithUser = ({handleSendMessage, handleSetMessage}:  ChatWithUserProps) => {
     const isSelected = useSelector(selectedChatSelector)
     const messages = [
         {
@@ -20,13 +24,11 @@ const ChatWithUser = () => {
     ]
     useEffect(() => {  
         const token = localStorage.getItem('token')
-        console.log("WS TOKEEEM", token)
-        console.log("connection")
     }, [])
     return (
         <div className={styles.chat}>
             {isSelected.isSelected && (
-                <ChatKeypad />
+                <ChatKeypad handleSendMessage={handleSendMessage}  handleSetMessage={ handleSetMessage} />
             )}
             <div className={styles.chat__inner}>
                 {!isSelected.isSelected ? (
