@@ -58,13 +58,6 @@ const SearchUser = createSlice({
         setSearch(state, action: PayloadAction<Users> ) {
             state.users= []
             state.users = state.users.concat(action.payload)
-
-
-            state.users.map(item => {
-                console.log("ITTEM" + JSON.stringify(item))
-                console.log("ITTEM" + JSON.stringify(item.avatar))
-              console.log("ITTEM" + item.avatar.color)
-            })
         }
     },
 });

@@ -4,25 +4,19 @@ import Tick from "../../assets/tick 2.png"
 import { searchUsersSelector } from "@packages/shared/store/selectors/searchUsers.selector"
 import { useSelector } from 'react-redux';
 import { useEffect } from "react";
-
+import {SelectedChaatActionCreator} from "@packages/shared/store/action-creators/SelectedChatActionCreator"
+import { useAppDispatch } from '@/hooks/redux';
 const ListOfUsers = () => {
     const users = useSelector(searchUsersSelector)
-
-    useEffect(() => {
-        users.users.map(item => {
-
-            //  let itt = JSON.parse(item)
-            console.log("US" + JSON.stringify(typeof item.avatar))
-            console.log("US" + JSON.stringify(item.avatar.color))
-        })
-    }, [users])
+    const dispatch  = useAppDispatch()
+const handleClick = (username: string) => {
+    dispatch(SelectedChaatActionCreator({username}))
+}
     return (
         <div className={styles.list}>
-
-
             <div className={styles.list__users}>
                 {users.users.map((item, index) => (
-                    <div key={index} className={styles.user}>
+                    <div key={index} className={styles.user} onClick={()=>handleClick(item.username)}>
                         <div className={styles.user__inner}>
                             {item.avatar.url ? (
                                 <>

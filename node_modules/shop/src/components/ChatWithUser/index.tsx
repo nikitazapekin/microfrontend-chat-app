@@ -2,10 +2,11 @@ import styles from "./index.module.scss"
 import Tick from "../../assets/tick 2.png"
 import ChatKeypad from "../ChatKeypad"
 import { useEffect } from "react"
-//import WebSocketService from "@packages/shared/API/websockets"
+import { useSelector } from 'react-redux';
+import { selectedChatSelector } from "@packages/shared/store/selectors/selectedChat.selector"
 const ChatWithUser = () => {
+    const isSelected = useSelector(selectedChatSelector)
     const messages = [
-
         {
             message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
             username: "Test",
@@ -17,19 +18,18 @@ const ChatWithUser = () => {
             isGroup: false
         }
     ]
-    const isSelected = false
-
-    useEffect(() => {  //ИСПРАААААААААААААААААААААВВВВВВВВВВВИИИИИИИИИИИИИТЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬЬ БАГГГГГГГГГГГГГГГГГГГГГГГ
+    useEffect(() => {  
         const token = localStorage.getItem('token')
         console.log("WS TOKEEEM", token)
-        //      WebSocketService.connect(token)
         console.log("connection")
     }, [])
     return (
         <div className={styles.chat}>
-            <ChatKeypad />
+            {isSelected.isSelected && (
+                <ChatKeypad />
+            )}
             <div className={styles.chat__inner}>
-                {isSelected ? (
+                {!isSelected.isSelected ? (
                     <div className={styles.chat__select__chat}>
                         Select any chat to start messageing
                     </div>

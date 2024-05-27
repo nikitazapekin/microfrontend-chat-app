@@ -32,10 +32,7 @@ const authData= useSelector(authSelector)
     const [ws, setWs] = useState(null);
     const [trades, setTrades] = useState([]);
     useEffect(() => {
-    
-
       let socket = new WebSocket("ws://127.0.0.1:5000/ws");
- 
           console.log("Attempting Connection...");
   
           socket.onopen = () => {
@@ -62,14 +59,13 @@ const authData= useSelector(authSelector)
     }, [])
 
     useEffect(() => {
-
 axios.get( `http://localhost:5000/${`chat`}/token-start?user=${authData.username}`)
   .then(response => {
-   
+
     console.log('Ответ от сервера TOKEN START:', response.data);
   })
   .catch(error => {
- 
+
     console.error('Произошла ошибка при запросе:', error);
   });
     }, [])
