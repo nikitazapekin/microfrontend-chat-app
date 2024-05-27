@@ -1,41 +1,116 @@
 import styles from "./index.module.scss"
 
 import Tick from "../../assets/tick 2.png"
- 
-const users = [
+import { searchUsersSelector } from "@packages/shared/store/selectors/searchUsers.selector"
+import { useSelector } from 'react-redux';
+import { useEffect } from "react";
 
-   
-    { id: 1, username: "test", message: "руддщ", lastTimeOfBeingAtNetwork: "10:22", isRead: false, logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s" },
-
-]
 const ListOfUsers = () => {
+    const users = useSelector(searchUsersSelector)
 
+    useEffect(() => {
+        users.users.map(item => {
+
+            //  let itt = JSON.parse(item)
+            console.log("US" + JSON.stringify(typeof item.avatar))
+            console.log("US" + JSON.stringify(item.avatar.color))
+        })
+    }, [users])
     return (
         <div className={styles.list}>
+
+
             <div className={styles.list__users}>
-                {users.map((item, index) => (
-                    <div key={item.id} className={styles.user}>
+                {users.users.map((item, index) => (
+                    <div key={index} className={styles.user}>
                         <div className={styles.user__inner}>
-                            <img className={styles.user__image} src={item.logo} alt="logo" />
+                            {item.avatar.url ? (
+                                <>
+                                    <img className={styles.user__image} src={item.avatar.url} alt="logo" />
+                                </>
+                            ) : (
+                                <>
+                                    <div style={{backgroundColor: item.avatar.color }} className={styles.avatar__background}>
+                                        <p className={styles.avatar__text}>
+                                            {item.avatar.text}
+                                        </p>
+                                    </div>
+                                </>
+                            )}
+
                             <div className={styles.user__right}>
-                                <div className={styles.user__right__header}>
+                                <div className={styles.user__header}>
+                                    <p className={styles.user__header__title}>
+                                        {item.username}
+                                    </p>
+                                    <div className={styles.user__header__end}>
+
+                                        <img className={styles.user__header__arrows} src={Tick} alt="arrows" />
+                                        <p className={styles.user__header__last__time}>
+                                            {item.lastTimeOfBeingAtNetwork}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p>
+                                    {item.message}
+                                </p>
+                            </div>
+                            {/*
+                 
+                
+                
+                 <div className={styles.user__right}>
+                 <div className={styles.user__right__header}>
                                     <p className={styles.user__right__title}>
                                         {item.username}
                                     </p>
                                     <div className={styles.user__right__header__info}>
                                         <img src={Tick} alt=" tick" className={styles.user__header__tick} />
+
+                                        {JSON.stringify(item.avatar)}
                                         <p className={styles.user__right__time}>
                                             {item.lastTimeOfBeingAtNetwork}
                                         </p>
-                                    </div>
-                                </div>
-                                <p className={styles.user__right__messsage}>
+                                        </div>
+                                        </div>
+                                        <p className={styles.user__right__messsage}>
                                     {item.message}
-                                </p>
-                            </div>
+                                    </p>
+                                    </div>
+                                    
+                    */}
+
+
+
                         </div>
                     </div>
                 ))}
+                {/*
+                        <img className={styles.user__image} src={item} alt="logo" />
+            {users.map((item, index) => (
+                <div key={item.id} className={styles.user}>
+                    <div className={styles.user__inner}>
+                        <img className={styles.user__image} src={item.logo} alt="logo" />
+                        <div className={styles.user__right}>
+                            <div className={styles.user__right__header}>
+                                <p className={styles.user__right__title}>
+                                    {item.username}
+                                    </p>
+                                <div className={styles.user__right__header__info}>
+                                    <img src={Tick} alt=" tick" className={styles.user__header__tick} />
+                                    <p className={styles.user__right__time}>
+                                        {item.lastTimeOfBeingAtNetwork}
+                                    </p>
+                                </div>
+                            </div>
+                            <p className={styles.user__right__messsage}>
+                                {item.message}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        */}
             </div>
         </div>
     );

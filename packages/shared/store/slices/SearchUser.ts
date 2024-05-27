@@ -1,9 +1,48 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+
+
+
+interface Obj {
+    text: string,
+    color: string,
+    url: string
+}
+
+
+type Users = Array<{
+    username: string,
+    country: string,
+ //   avatar: string,
+ //avatar: Obj
+avatar: {
+    text: string,
+    color: string,
+    url: string
+},
+    description: string,
+    lastTimeOfBeingAtNetwork: string,
+    message: string
+    }>
 export interface SearchUserTypes {
-    isOpen: boolean
+ users: Array<{
+    username: string,
+    country: string,
+   avatar: {
+    text: string,
+    color: string,
+    url: string
+},
+    description: string,
+    lastTimeOfBeingAtNetwork: string,
+    message: string
+    }>
 }
 const initialState: SearchUserTypes = {
-   isOpen: false
+  // isOpen: false
+  //users: []
+
+  users: [] 
 };
 
 const SearchUser = createSlice({
@@ -16,12 +55,20 @@ const SearchUser = createSlice({
         setError(state, action: PayloadAction<string | null>) {
 
         },
-        setOpen(state) {
-           state.isOpen = !state.isOpen
+        setSearch(state, action: PayloadAction<Users> ) {
+            state.users= []
+            state.users = state.users.concat(action.payload)
+
+
+            state.users.map(item => {
+                console.log("ITTEM" + JSON.stringify(item))
+                console.log("ITTEM" + JSON.stringify(item.avatar))
+              console.log("ITTEM" + item.avatar.color)
+            })
         }
     },
 });
 
-export const { setLoading, setError, setOpen } = SearchUser.actions;
+export const { setLoading, setError, setSearch } = SearchUser.actions;
 export default SearchUser.reducer;
 

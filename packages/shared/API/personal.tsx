@@ -69,6 +69,3 @@ export default class PersonalService {
         return serverApiInstance.get<PersonalInformationTypes>(`/personal-username?user=${username}`)
     }
 }
-
-
-//getPersonalDataByUsername();

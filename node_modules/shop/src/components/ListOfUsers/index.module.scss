@@ -94,7 +94,18 @@
         }
     }
 }
-
+.avatar {
+    &__background {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        color: $white;
+        font-size: 32px;
+    }
+}
 /*
 .user {
     &__inner {
