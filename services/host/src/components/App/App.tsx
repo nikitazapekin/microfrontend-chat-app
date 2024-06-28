@@ -7,8 +7,7 @@ import "./test.scss"
 export const App = () => {
 
     return (
-        <div data-testid={'App.DataTestId'}>
-           
+        <div data-testid={'App.DataTestId'}> 
             <Link to={adminRoutes.about}>ABOUT</Link>
           <div className={styles.test}>
             ffffffffffffff

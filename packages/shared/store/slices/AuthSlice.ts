@@ -13,7 +13,6 @@ const initialState: AuthState = {
   username: "",
   country: "",
   tel: "",
- // password: ""
 };
 
 const AuthSlice = createSlice({
