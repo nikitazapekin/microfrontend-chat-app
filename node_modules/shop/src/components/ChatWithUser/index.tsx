@@ -10,7 +10,9 @@ interface ChatWithUserProps {
 }
 const ChatWithUser = ({handleSendMessage, handleSetMessage}:  ChatWithUserProps) => {
     const isSelected = useSelector(selectedChatSelector)
-    const messages = [
+
+    /*
+   const messages = [
         {
             message: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea error impedit vel nostrum fugiat molestias accusamus facere ipsa eveniet perspiciatis, dolor perferendis maiores, quaerat dolores architecto assumenda sed consequuntur laudantium.",
             username: "Test",
@@ -21,7 +23,7 @@ const ChatWithUser = ({handleSendMessage, handleSetMessage}:  ChatWithUserProps)
             logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaEHoW5QWjxpD2klNN6aeq8eKyMjLc-Dhxg&s",
             isGroup: false
         }
-    ]
+    ]  */
     useEffect(() => {  
         const token = localStorage.getItem('token')
     }, [])
@@ -37,7 +39,7 @@ const ChatWithUser = ({handleSendMessage, handleSetMessage}:  ChatWithUserProps)
                     </div>
                 ) : (
                     <div className={styles.messages}>
-                        {messages.map((item, index) => (
+                  {/*      {messages.map((item, index) => (
                             <div key={index} className={styles.message}>
                                 <img src={item.logo} alt="logo" className={styles.message__logo} />
                                 <div className={styles.message__right}>
@@ -51,11 +53,10 @@ const ChatWithUser = ({handleSendMessage, handleSetMessage}:  ChatWithUserProps)
                                         <p className={styles.message__time}>
                                             {item.time}
                                         </p>
-                                        <img src={Tick} alt="tick" className={styles.message__time__tick} />
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        ))} */}
                     </div>
                 )}
             </div>
@@ -64,3 +65,4 @@ const ChatWithUser = ({handleSendMessage, handleSetMessage}:  ChatWithUserProps)
 }
 
 export default ChatWithUser;
+                                    // <img src={Tick} alt="tick" className={styles.message__time__tick} />  

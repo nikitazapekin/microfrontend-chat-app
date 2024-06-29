@@ -128,9 +128,7 @@ const ChatMain = () => {
         };
 
         socket.onmessage = (event) => {
-           // const messageDiv = document.createElement('div');
-         //   messageDiv.textContent = `Received: ${event.data}`;
-          //  document.getElementById('messages').appendChild(messageDiv);
+          
             console.log('Received message:', event.data);
         };
 
