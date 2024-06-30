@@ -1,4 +1,4 @@
- 
+
 
 import ChatWithUser from "../ChatWithUser";
 import ListOfUsers from "../ListOfUsers";
@@ -11,7 +11,10 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import { authSelector } from "@packages/shared/store/selectors/auth.selector";
 import { selectedChatSelector } from "@packages/shared/store/selectors/selectedChat.selector";
+import { AddLastMessagesAction } from "@packages/shared/store/action-creators/MessagesActionCreator";
 import EmojiWhileHovering from "../EmojiWhileHovering";
+import { time } from "console";
+
 const ChatMain = () => {
     const authData = useSelector(authSelector);
     const isSelected = useSelector(selectedChatSelector)
@@ -31,10 +34,9 @@ const ChatMain = () => {
             console.log("Socket Closed Connection: ", event);
             socket.send("Client Closed!");
         };
-
         socket.onmessage = (event) => {
-          
             console.log('Received message:', event.data);
+            dispatch(AddLastMessagesAction(event.data))
         };
 
         socket.onerror = error => {
@@ -61,7 +63,10 @@ const ChatMain = () => {
     const handleSendMessage = () => {
         if (ws && ws.readyState === WebSocket.OPEN) {
             console.log("SENDDDD")
-            ws.send(JSON.stringify({ name: authData.username, message: message, to: isSelected.user }));
+          //  ws.send(JSON.stringify({ name: authData.username, message: message, to: isSelected.user }));
+
+          ws.send(JSON.stringify({ from: authData.username, message: message, to: isSelected.user, time: "" }));
+            dispatch(AddLastMessagesAction({ from: authData.username, message: message, to: isSelected.user, time: "" }))
             setMessage("");
         }
     };
