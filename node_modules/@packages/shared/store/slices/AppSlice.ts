@@ -1,17 +1,13 @@
 
-
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface AppStatee {
   isLoading: boolean;
   error: string | null;
 }
-
 const initialState: AppStatee = {
   isLoading: false,
   error: null,
 };
-
 const appSlicee = createSlice({
   name: 'app',
   initialState,

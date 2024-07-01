@@ -1,15 +1,9 @@
 
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface SidebarTypes {
-
     isOpen: boolean
-
-  
 }
-
 const initialState: SidebarTypes = {
-
    isOpen: false
 };
 
@@ -18,10 +12,8 @@ const SidebarSlice = createSlice({
     initialState,
     reducers: {
         setLoading(state, action: PayloadAction<boolean>) {
-
         },
         setError(state, action: PayloadAction<string | null>) {
-
         },
         setOpen(state) {
            state.isOpen = !state.isOpen
@@ -31,16 +23,3 @@ const SidebarSlice = createSlice({
 
 export const { setLoading, setError, setOpen } = SidebarSlice.actions;
 export default SidebarSlice.reducer;
-
-
-/*
-{
-    "access_token": "newAccessToken",
-    "avatar": "",
-    "chats": null,
-    "country": "vds",
-    "description": " description",
-    "tel": "vds",
-    "username": "dvs"
-}
-*/

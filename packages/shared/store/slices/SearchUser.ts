@@ -1,20 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-
-
-
 interface Obj {
     text: string,
     color: string,
     url: string
 }
-
-
 type Users = Array<{
     username: string,
     country: string,
- //   avatar: string,
- //avatar: Obj
 avatar: {
     text: string,
     color: string,
@@ -39,9 +31,6 @@ export interface SearchUserTypes {
     }>
 }
 const initialState: SearchUserTypes = {
-  // isOpen: false
-  //users: []
-
   users: [] 
 };
 
@@ -50,10 +39,8 @@ const SearchUser = createSlice({
     initialState,
     reducers: {
         setLoading(state, action: PayloadAction<boolean>) {
-
         },
         setError(state, action: PayloadAction<string | null>) {
-
         },
         setSearch(state, action: PayloadAction<Users> ) {
             state.users= []

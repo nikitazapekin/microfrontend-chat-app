@@ -44,19 +44,14 @@ serverApiInstance.interceptors.response.use((config) => {
 }, async (error) => {
     const user = localStorage.getItem("username")
     const originalRequest = error.config;
-    // console.log("ERRR" + JSON.stringify(error))
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
             const token = localStorage.getItem("token")
-           // console.log("TOK" + token)
             const response = await axios.get<AuthResponse>(`${API_URL}token?token=${token}&user=${user}`, { withCredentials: true })
-
             localStorage.setItem('token', JSON.stringify({ token: response.data.token }));
-         //   console.log("new access token" + JSON.stringify(response.data))
             return serverApiInstance.request(originalRequest);
         } catch (e) {
-            console.log('НЕ АВТОРИЗОВАН')
             localStorage.removeItem('token')
         }
     }
@@ -67,29 +62,22 @@ export default class AuthService {
     static async login(username: string, country: string, tel: string): Promise<AxiosResponse<AuthResponse>> {
         return serverApiInstance.post<AuthResponse>('/sign-in', { username, tel, country })
     }
-
     static async registration(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
         return serverApiInstance.post<AuthResponse>('/registration', { email, password })
     }
-
     static async logout(): Promise<void> {
         return serverApiInstance.post('/logout')
     }
     static async getRefreshToken(): Promise<AxiosResponse<RefreshProps>> {
         try {
             const response = await serverApiInstance.get<RefreshProps>('/refresh-token');
-         //   console.log("reap " + JSON.stringify(response.data.refresh_token))
             return response;
         } catch (error) {
             throw new Error('Failed to fetch refresh token');
         }
     }
-
-
-
     static async getAccessToken(): Promise<AxiosResponse<AccessProps>> {
         try {
-
             const response = await serverApiInstance.get<AccessProps>('token');
             console.log("reap " + JSON.stringify(response))
             return response;
@@ -97,19 +85,13 @@ export default class AuthService {
             throw new Error('Failed to fetch access token');
         }
     }
-
     static async getUserData(): Promise<AxiosResponse<any>> {
-
         try {
             const response = await serverApiInstance.get<PersonalData>(`/personal`);
-            console.log("reap " + JSON.stringify(response.data.access_token))
-
             return response;
         } catch (error) {
             throw new Error('Failed to fetch access token');
         }
-
-
     }
 }
 export const personalApi = {
@@ -125,11 +107,9 @@ export const personalApi = {
         return serverApiInstance.get(`hello`, {
         })
             .then(response => {
-                console.log("SERVER", response.data);
                 return response.data;
             })
             .catch(error => {
-                console.error("Error during signInAction:", error);
                 throw error;
             });
     }

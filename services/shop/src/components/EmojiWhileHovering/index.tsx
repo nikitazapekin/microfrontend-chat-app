@@ -19,9 +19,6 @@ const EmojiWhileHovering = () => {
                 </div>
             </div>
         </div>
-        {/*
-        {JSON.stringify(Emoji)}
-    */}
     </>);
 }
 

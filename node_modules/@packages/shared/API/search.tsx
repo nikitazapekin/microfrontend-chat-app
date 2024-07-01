@@ -52,7 +52,6 @@ const serverApiInstance: AxiosInstance = axios.create({
 });
 
 serverApiInstance.interceptors.request.use((config) => {
-    console.log("INTERCEPT" + localStorage.getItem('token'))
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config;
 })

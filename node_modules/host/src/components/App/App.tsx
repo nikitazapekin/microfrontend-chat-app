@@ -5,7 +5,6 @@ import {adminRoutes} from '@packages/shared/src/routes/admin'
  import styles from "./App.module.scss"
 import "./test.scss"
 export const App = () => {
-
     return (
         <div data-testid={'App.DataTestId'}> 
             <Link to={adminRoutes.about}>ABOUT</Link>

@@ -53,7 +53,6 @@ const AuthForm = () => {
             if (res.status == 200) {
                 localStorage.setItem("username", personalData.username)
                 navigate(shopRoutes.chat)
-                console.log("УСПЕШНАЯ АВТОРИЗВЦИЯ")
                 dispatch(IsUnauthorizedAction({ isUnauthorized: true }))
                 dispatch(PersonalInformationByUsernameAction(personalData.username))
 
@@ -66,22 +65,18 @@ const AuthForm = () => {
     }
     return (
         <div className={globalStyles.container}>
-
             <button onClick={han}> fff</button>
             <form action="" className={styles.auth__form__component}>
                 <div className={styles.auth__image__container}>
                     <img className={styles.auth__image} src={Telegram} alt="logo" />
                 </div>
-
                 <h1 className={styles.auth__title}>
                     Sign in to Telegram
-
                 </h1>
                 <h2 className={styles.auth__about}>
                     Please confirm your country and
                     enter your phone number
                 </h2>
-
                 <div className={styles.auth__forms}>
                     <div className={styles.auth__form}>
                         <p className={styles.auth__form__title}>
@@ -122,12 +117,6 @@ const AuthForm = () => {
                             <img className={styles.auth__form__icon} src={Telephone} alt="icon" />
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
                 <div className={styles.auth__check__block}>
                     <input type="checkbox" className={styles.auth__check__block__input} />

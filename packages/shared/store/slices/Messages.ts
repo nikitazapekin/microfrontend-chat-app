@@ -9,7 +9,6 @@ export interface MessagesState {
     messages: MessageData[]
 }
 const initialState: MessagesState = {
-
     messages: []
 };
 const MessagesSlice = createSlice({
@@ -17,14 +16,12 @@ const MessagesSlice = createSlice({
     initialState,
     reducers: {
         setMsges(state, action: PayloadAction<MessageData[]>) {
-            console.log("MESS" + JSON.stringify(action.payload))
             state.messages = action.payload
         },
         setLastMessage(state, action: PayloadAction<MessageData>) {
             state.messages.push(action.payload)
         },
         setAddToListLastMessage(state, action: PayloadAction<MessageData>) {
-            console.log("LAST MESSAGE", JSON.stringify(action.payload))
             state.messages.push(action.payload)
         }
     },

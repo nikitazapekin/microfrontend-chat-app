@@ -14,7 +14,6 @@ import { selectedChatSelector } from "@packages/shared/store/selectors/selectedC
 import { AddLastMessagesAction } from "@packages/shared/store/action-creators/MessagesActionCreator";
 import EmojiWhileHovering from "../EmojiWhileHovering";
 import { time } from "console";
-
 const ChatMain = () => {
     const authData = useSelector(authSelector);
     const isSelected = useSelector(selectedChatSelector)
@@ -25,20 +24,15 @@ const ChatMain = () => {
     useEffect(() => {
         let socket = new WebSocket(URL_WEB_SOCKET);
         setWs(socket);
-        console.log("Attempting Connection...");
         socket.onopen = () => {
-            console.log("Successfully Connected");
             socket.send(JSON.stringify({ connectedUser: authData.username }))
         };
         socket.onclose = event => {
-            console.log("Socket Closed Connection: ", event);
             socket.send("Client Closed!");
         };
         socket.onmessage = (event) => {
-            console.log('Received message:', event.data);
             dispatch(AddLastMessagesAction(event.data))
         };
-
         socket.onerror = error => {
             console.log("Socket Error: ", error);
         }
@@ -62,8 +56,7 @@ const ChatMain = () => {
     }, [authData.username]);
     const handleSendMessage = () => {
         if (ws && ws.readyState === WebSocket.OPEN) {
-            console.log("SENDDDD")
-          ws.send(JSON.stringify({ from: authData.username, message: message, to: isSelected.user, time: "" }));
+            ws.send(JSON.stringify({ from: authData.username, message: message, to: isSelected.user, time: "" }));
             dispatch(AddLastMessagesAction({ from: authData.username, message: message, to: isSelected.user, time: "" }))
             setMessage("");
         }
@@ -96,5 +89,4 @@ const ChatMain = () => {
     );
 };
 
-//<EmojiWhileHovering />
 export default ChatMain;

@@ -1,26 +1,5 @@
 @import "@packages/shared/theme/theme.scss";
-/*
-.list {
-    &__users {
 
-        display: flex;
-        flex-direction: column;
-        row-gap: 18px;
-
-
-      height: calc(100vh - 112px);
-
-        overflow-y: scroll;
-
-    }
-.list::-webkit-scrollbar {
-    width: 1px; 
-  }
-   
-
-
-}
-*/
 
 
 .list {
@@ -29,7 +8,7 @@
         flex-direction: column;
         row-gap: 18px;
         height: calc(100vh - 112px);
-        overflow-y: scroll;
+    /*    overflow-y: scroll; */
  
     }
 }

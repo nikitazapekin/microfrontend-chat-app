@@ -1,21 +1,12 @@
 
 import styles from "./index.module.scss"
 import Logo from "../../assets/image 4.png"
-
 import { sidebarSelector } from "@packages/shared/store/selectors/sidebar.selector"
 import { SidebarAction } from "@packages/shared/store/action-creators/SidebarActionCreateor"
 import { useAppDispatch } from '@/hooks/redux';
-import AuthService, { personalApi } from "@packages/shared/API/auth"
 import { useSelector } from 'react-redux';
 import { personalSelector } from "@packages/shared/store/selectors/personalInformation.selector"
-
-import { isUnauthorizedSelector } from "@packages/shared/store/selectors/isUnauthorized.selector"
-import { useEffect } from "react";
-
-
 const Sidebar = () => {
-
-
     const data = useSelector(sidebarSelector)
     const personalData = useSelector(personalSelector)
     const dispatch = useAppDispatch()

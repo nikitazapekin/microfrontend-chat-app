@@ -14,8 +14,6 @@ export interface AuthResponse {
     username: string;
 
 }
-
-
 export interface PersonalInformationTypes {
     access_token: string,
     avatar: string,
@@ -32,9 +30,7 @@ const serverApiInstance: AxiosInstance = axios.create({
     withCredentials: true,
 
 });
-
 serverApiInstance.interceptors.request.use((config) => {
-    console.log("INTERCEPT" + localStorage.getItem('token'))
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config;
 })
@@ -45,10 +41,7 @@ serverApiInstance.interceptors.response.use((config) => {
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
-
             const response = await axios.get<AuthResponse>(`${API_URL}/token`, { withCredentials: true })
-
-            console.log("PERSONAL TOKEEEEEEEEEEEN" + JSON.stringify(response))
             localStorage.setItem('token', response.data.access_token);
             return serverApiInstance.request(originalRequest);
         } catch (e) {
@@ -59,13 +52,9 @@ serverApiInstance.interceptors.response.use((config) => {
 })
 export default class PersonalService {
     static async getPersonalData(): Promise<AxiosResponse<AuthResponse>> {
-
         return serverApiInstance.get<AuthResponse>('/personal')
     }
-
-
     static async getPersonalDataByUsername(username: string): Promise<AxiosResponse<PersonalInformationTypes>> {
-
         return serverApiInstance.get<PersonalInformationTypes>(`/personal-username?user=${username}`)
     }
 }

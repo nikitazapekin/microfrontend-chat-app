@@ -25,7 +25,6 @@ const rootReducer = combineReducers({
   SelectedChat: SelectedChat,
   MessagesSlice: MessagesSlice
 });
-
 const persistConfig = getPersistConfig({
   key: 'root',
   storage,
@@ -37,7 +36,6 @@ const persistConfig = getPersistConfig({
   ],
   rootReducer,
 });
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

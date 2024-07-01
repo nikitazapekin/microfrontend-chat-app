@@ -8,32 +8,22 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState, useCallback } from "react";
 import { SearchUserActionCreator } from "@packages/shared/store/action-creators/SearchUserActionCreator";
 import _debounce from 'lodash/debounce';
-
 import {selectedChatSelector} from "@packages/shared/store/selectors/selectedChat.selector"
 const Header = () => {
-
-
     const isSelected = useSelector(selectedChatSelector)
-    useEffect(()=> {
-console.log("IS SELECTEDDDDDDDDDDDDDDDDDDDD" +JSON.stringify(isSelected))
-    }, [isSelected])
     const data = useSelector(sidebarSelector);
     const dispatch = useAppDispatch();
     const handleDispatch = () => {
         dispatch(SidebarAction());
     }
-
     const [inputData, setInputData] = useState({
         inputData: ""
     });
-
     const handleDebounceFn = useCallback((inputValue: string) => {
 
         dispatch(SearchUserActionCreator({username: inputValue}));
     }, [dispatch]);
-
     const debounceFn = useCallback(_debounce(handleDebounceFn, 1000), [handleDebounceFn]);
-
     const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setInputData(prevState => ({
@@ -41,12 +31,9 @@ console.log("IS SELECTEDDDDDDDDDDDDDDDDDDDD" +JSON.stringify(isSelected))
             [name]: value
         }));
     }
-
     useEffect(() => {
-        console.log("CHANGE" + inputData.inputData);
         debounceFn(inputData.inputData);
     }, [inputData.inputData, debounceFn]);
-
     return (
         <div className={styles.header}>
             <Sidebar />
@@ -68,8 +55,6 @@ console.log("IS SELECTEDDDDDDDDDDDDDDDDDDDD" +JSON.stringify(isSelected))
                         <div className={styles.right__text}>
                             <p className={styles.right__text__title}>
                                 <b>
-                                {/*    Test
-                                */}
                                 {isSelected.user}
                                 </b>
                             </p>

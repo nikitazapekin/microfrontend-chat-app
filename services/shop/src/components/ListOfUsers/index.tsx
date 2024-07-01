@@ -14,9 +14,6 @@ const handleClick = (username: string) => {
 }
     return (
         <div className={styles.list}>
-
-            {/*
-*/}
             <div className={styles.list__users}>
             {users.users.map((item, index) => (
                     <div key={index} className={styles.user} onClick={()=>handleClick(item.username)}>
@@ -43,8 +40,9 @@ const handleClick = (username: string) => {
                                         {item.username}
                                     </p>
                                     <div className={styles.user__header__end}>
-
+{/*
                                         <img className={styles.user__header__arrows} src={Tick} alt="arrows" />
+                                        */}
                                         <p className={styles.user__header__last__time}>
                                             {item.lastTimeOfBeingAtNetwork}
                                         </p>
@@ -54,10 +52,6 @@ const handleClick = (username: string) => {
                                     {item.message}
                                 </p>
                             </div>
-                         
-
-
-
                         </div>
                     </div>
                 ))}
@@ -68,26 +62,3 @@ const handleClick = (username: string) => {
 }
 
 export default ListOfUsers;
-/*  <div className={styles.user}>
-      <div className={styles.user__inner}>
-          <img className={styles.user__logo__img} src={item.logo} alt="user" />
-          <div className={styles.user__right}>
-
-              <div className={styles.user__header}>
-                  <p className={styles.user__header__title}>
-                      {item.username}
-                  </p>
-                  <div className={styles.user__header__end}>
-
-                  <img className={styles.user__header__arrows} src={Tick} alt="arrows" />
-                  <p className={styles.user__header__last__time}>
-                  {item.lastTimeOfBeingAtNetwork}
-              </p>
-              </div>
-                  </div>
-              <p>
-                  {item.message}
-              </p>
-          </div>
-      </div>
-  </div> */

@@ -10,10 +10,7 @@ export interface PersonalInformationTypes {
   tel: string,
   username: string
 }
-
 const initialState: PersonalInformationTypes = {
-
-  // isOpen: false
   access_token: "",
   avatar: "",
   chats: null,
@@ -27,9 +24,7 @@ const PersonalInformationSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    
     setPersonalInformation(state, action: PayloadAction<PersonalInformationTypes>) {
-      console.log("payload" + JSON.stringify(action.payload))
       state.username = action.payload.username
       state.avatar= action.payload.avatar
       state.country = action.payload.country

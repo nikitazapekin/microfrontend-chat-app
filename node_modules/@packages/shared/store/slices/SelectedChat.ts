@@ -2,11 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface AuthState {
     user: string,
     messages: Array<{
-
     }>,
     isSelected: boolean
 }
-
 export interface Payload {
     username: string
 }
@@ -22,9 +20,6 @@ const selectedChat = createSlice({
         setSelectedChat(state, action: PayloadAction<Payload>) {
             state.user = action.payload.username
             state.isSelected = true
-
-
-            console.log("IS SEL" +state.isSelected)
         }
     },
 });
