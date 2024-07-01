@@ -82,9 +82,15 @@ const ChatWithUser = ({ handleSendMessage, handleSetMessage }: ChatWithUserProps
                     <div className={styles.messages}>
                         {messages && (
                             <>
+
+
                                 {messages.map((item, index) => (
-                                    <div key={index} className={styles.message}>
-                                        <div className={styles.message__right}>
+                                    <div 
+                                    key={index} className={styles.message}>
+                                        <div className={styles.message__right}
+                                        style={{backgroundColor:     item.from==isSelected.user ? "#F1F1F1" : "#EFFDDE"}} 
+                                        
+                                        >
                                             <p className={styles.message__title}>
                                                 {item.from}
                                             </p>
