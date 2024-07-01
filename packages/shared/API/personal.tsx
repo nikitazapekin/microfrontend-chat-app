@@ -1,3 +1,4 @@
+ 
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import { AxiosResponse } from 'axios';
@@ -23,8 +24,8 @@ export interface PersonalInformationTypes {
     tel: string,
     username: string
 }
-
-const API_URL = `http://localhost:5000/${`chat`}/`
+ 
+const API_URL = `http://${process.env.REACT_APP_API_BASE_URL}/${`chat`}/`
 const serverApiInstance: AxiosInstance = axios.create({
     baseURL: API_URL,
     withCredentials: true,
@@ -58,3 +59,4 @@ export default class PersonalService {
         return serverApiInstance.get<PersonalInformationTypes>(`/personal-username?user=${username}`)
     }
 }
+ 

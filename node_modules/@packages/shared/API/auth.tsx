@@ -29,7 +29,9 @@ interface PersonalData {
     description: string,
 
 }
-const API_URL = `http://localhost:5000/${`chat`}/`
+
+ 
+const API_URL = `http://${process.env.REACT_APP_API_BASE_URL}/${`chat`}/`
 const serverApiInstance: AxiosInstance = axios.create({
     baseURL: API_URL,
     withCredentials: true,
@@ -70,6 +72,7 @@ export default class AuthService {
     }
     static async getRefreshToken(): Promise<AxiosResponse<RefreshProps>> {
         try {
+           
             const response = await serverApiInstance.get<RefreshProps>('/refresh-token');
             return response;
         } catch (error) {
@@ -80,6 +83,8 @@ export default class AuthService {
         try {
             const response = await serverApiInstance.get<AccessProps>('token');
             console.log("reap " + JSON.stringify(response))
+
+         
             return response;
         } catch (error) {
             throw new Error('Failed to fetch access token');

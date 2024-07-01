@@ -129,7 +129,7 @@ const AuthForm = () => {
                         onClick={handleAuth}
                     >
 
-                        START MESSAGING
+                        START MESSAGING  
                     </button>
                 </div>
 

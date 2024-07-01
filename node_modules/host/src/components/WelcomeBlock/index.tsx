@@ -3,6 +3,8 @@ import styles from "./styles.module.scss"
 import { Link } from "react-router-dom";
 import { adminRoutes } from '@packages/shared/src/routes/admin'
 const WelcomeBlock = () => {
+
+    console.log("WEL ENV",    process.env.REACT_APP_API_BASE_URL)
     return (
         <section className={styles.welcome__block}>
             <div className={styles.welcome__inner__content}>

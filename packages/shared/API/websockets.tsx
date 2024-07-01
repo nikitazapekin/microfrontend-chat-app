@@ -11,7 +11,7 @@ export const WebsocketProvider = ({ children }: WebsocketProviderProps) => {
   const [val, setVal] = useState<string | null>(null);
   const ws = useRef<WebSocket | null>(null);
   useEffect(() => {
-    const socket = new WebSocket("ws://127.0.0.1:5000/ws");
+    const socket = new WebSocket(`ws://${process.env.REACT_APP_API_BASE_URL}/ws`);
     socket.onopen = () => {
       setIsReady(true);
     };

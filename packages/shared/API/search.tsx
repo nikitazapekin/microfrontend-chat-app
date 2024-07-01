@@ -44,7 +44,7 @@ interface UsersResponse {
         message: string
         }>
 }
-const API_URL = `http://localhost:5000/${`chat`}/`
+const API_URL = `http://${process.env.REACT_APP_API_BASE_URL}/${`chat`}/`
 const serverApiInstance: AxiosInstance = axios.create({
     baseURL: API_URL,
     withCredentials: true,

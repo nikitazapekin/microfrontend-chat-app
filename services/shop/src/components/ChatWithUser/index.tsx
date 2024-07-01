@@ -24,7 +24,7 @@ const ChatWithUser = ({ handleSendMessage, handleSetMessage }: ChatWithUserProps
     const messages = useSelector(messagesSelector).messages
     const isSelected = useSelector(selectedChatSelector)
     const authData = useSelector(authSelector);
-    const URL_WEB_SOCKET = `ws://localhost:5000/ws/chat?user=${authData.username}&companion=${isSelected.user}`;
+    const URL_WEB_SOCKET = `ws://${process.env.REACT_APP_API_BASE_URL}/ws/chat?user=${authData.username}&companion=${isSelected.user}`;
     const [ws, setWs] = useState(null);
     useEffect(() => {
         let socket = new WebSocket(URL_WEB_SOCKET);

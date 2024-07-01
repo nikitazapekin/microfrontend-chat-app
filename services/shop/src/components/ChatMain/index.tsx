@@ -46,7 +46,7 @@ const ChatMain = () => {
         }
     }, [dispatch]);
     useEffect(() => {
-        axios.get(`http://localhost:5000/${`chat`}/token-start?user=${authData.username}`)
+        axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/${`chat`}/token-start?user=${authData.username}`)
             .then(response => {
                 console.log('Ответ от сервера TOKEN START:', response.data);
             })
@@ -70,18 +70,6 @@ const ChatMain = () => {
                 <ListOfUsers />
                 <ChatWithUser handleSendMessage={handleSendMessage} handleSetMessage={handleSetMessage} />
                 <SessionModal />
-                <div className={styles.chatInputContainer}>
-                    <input
-                        type="text"
-                        value={message}
-                        onChange={(e) => handleSetMessage(e.target.value)}
-                        placeholder="Type your message..."
-                        className={styles.chatInput}
-                    />
-                    <button onClick={handleSendMessage} className={styles.sendButton}>
-                        Send
-                    </button>
-                </div>
             </div>
 
 

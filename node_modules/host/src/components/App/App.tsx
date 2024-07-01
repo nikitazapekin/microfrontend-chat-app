@@ -18,3 +18,7 @@ export const App = () => {
 
 //npm run start -w admin 
 //npm run start -workspaces
+
+
+
+//npm install npm-run-all --save-dev
