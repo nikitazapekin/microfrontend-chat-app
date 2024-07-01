@@ -46,8 +46,6 @@ const ChatWithUser = ({ handleSendMessage, handleSetMessage }: ChatWithUserProps
         socket.onmessage = (event: MessageEvent) => {
             try {
                 const data: MessageData[] | MessageData = JSON.parse(event.data);
-                console.log("==========================================================================")
-                console.log("GETTTTTTTTTTTTT MESAAAAAAAAAAGE", JSON.stringify(data))
                 if (Array.isArray(data)) {
                     dispatch(MessagesAction({ messages: data }))
 
@@ -88,9 +86,6 @@ const ChatWithUser = ({ handleSendMessage, handleSetMessage }: ChatWithUserProps
                                     <div key={index} className={styles.message}>
                                         <div className={styles.message__right}>
                                             <p className={styles.message__title}>
-                                                {/*  {authData.username!= item.from ? item.from : item.to} */}
-
-
                                                 {item.from}
                                             </p>
                                             <p className={styles.message__content}>

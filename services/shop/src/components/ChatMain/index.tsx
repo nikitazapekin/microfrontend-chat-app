@@ -63,8 +63,6 @@ const ChatMain = () => {
     const handleSendMessage = () => {
         if (ws && ws.readyState === WebSocket.OPEN) {
             console.log("SENDDDD")
-          //  ws.send(JSON.stringify({ name: authData.username, message: message, to: isSelected.user }));
-
           ws.send(JSON.stringify({ from: authData.username, message: message, to: isSelected.user, time: "" }));
             dispatch(AddLastMessagesAction({ from: authData.username, message: message, to: isSelected.user, time: "" }))
             setMessage("");
